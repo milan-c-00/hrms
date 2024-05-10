@@ -25,5 +25,5 @@ import empPerformance.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('employees/',include('employees.urls')),
-    path('', empPerformance.views.home, name='home'),
+    path('performance/',include('empPerformance.urls')),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
