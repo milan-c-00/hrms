@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'empPerformance.apps.EmpperformanceConfig',
     'employees.apps.EmployeesConfig',
+    'tasks.apps.TasksConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -124,7 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'empPerformance/static/')
+    os.path.join(BASE_DIR, 'empPerformance/static/'),
+    os.path.join(BASE_DIR, 'hrms/static/')
 ]
 
 STATIC_ROOT= os.path.join(BASE_DIR, 'static')
