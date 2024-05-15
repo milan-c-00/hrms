@@ -188,11 +188,17 @@
       }
 
       .logo {
-        width: 30px;
-        height: 20px;
+        width: 32px;
+        height: 25px;
         margin-top: 50px;
         margin-left: 15px;
         margin-bottom: 30px;
+      }
+
+      .icon {
+        width:20px;
+        height: 20px;
+        margin-right: 10px;
       }
    </style>
 </head>
@@ -203,15 +209,31 @@
       <div class="sidebar">
          <img src="{% static 'Logo-01.jpg' %}" class="logo" alt="Logo">
          <div class="title">GENERAL</div>
-         <a href="#">Dashboard</a>
-         <a href="#">Employees</a>
-         <a href="#">Documents</a>
-         <a href="#">Schedule</a>
-         <a href="#">Task Board</a>
-         <a href="#">Payment</a>
+         <a href="#">
+            <img src="{% static 'Vector.png' %}" class= "icon" alt="vector">
+           Dashboard</a>
+         <a href="#">
+            <img src="{% static 'Employee Dark-01.png' %}" class= "icon" alt="docs">
+           Employees</a>
+         <a href="#">
+           <img src="{% static 'Group 1000004815.png' %}" class= "icon" alt="docs">
+           Documents</a>
+         <a href="#">
+           <img src="{% static 'Group 1000004819.png' %}" class= "icon" alt="schedule">
+           Schedule</a>
+         <a href="#">
+            <img src="{% static 'Tasks Icon.png' %}" class= "icon" alt="tasks">
+           Task Board</a>
+         <a href="#">
+            <img src="{% static 'Payment Dark-01.png' %}" class= "icon" alt="payment">
+           Payment</a>
          <div class="title">Tools</div>
-         <a href="#">Settings</a>
-         <a href="#">Help</a>
+         <a href="#">
+           <img src="{% static 'Settings Dark-01.png' %}" class= "icon" alt="settings">
+           Settings</a>
+         <a href="#">
+           <img src="{% static 'Help Dark-01.png' %}" class= "icon" alt="help">
+           Help</a>
          <div class="account">Aurora</div>
       </div>
 
