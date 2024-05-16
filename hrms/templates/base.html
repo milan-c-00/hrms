@@ -200,6 +200,14 @@
         height: 20px;
         margin-right: 10px;
       }
+
+      .sidebar a.active img {
+    /* Change the background image for the active state */
+    /* Example:
+       background-image: url('path/to/active-image.png');
+    */
+    opacity: 0.5; /* Change opacity or any other style as needed */
+  }
    </style>
 </head>
 <body>
@@ -209,30 +217,32 @@
       <div class="sidebar">
          <img src="{% static 'Logo-01.jpg' %}" class="logo" alt="Logo">
          <div class="title">GENERAL</div>
-         <a href="#">
-            <img src="{% static 'Vector.png' %}" class= "icon" alt="vector">
-           Dashboard</a>
-         <a href="#">
-            <img src="{% static 'Employee Dark-01.png' %}" class= "icon" alt="docs">
-           Employees</a>
-         <a href="#">
-           <img src="{% static 'Group 1000004815.png' %}" class= "icon" alt="docs">
-           Documents</a>
-         <a href="#">
-           <img src="{% static 'Group 1000004819.png' %}" class= "icon" alt="schedule">
+         <a href="#" data-default-image="{% static 'Vector.png' %}" data-active-image="{% static 'Dashboard White-01.png' %}" class="icon-link">
+           <img src="{% static 'Vector.png' %}" class="icon" alt="vector">
+            Dashboard
+         </a>
+            <a href="#" data-default-image="{% static 'Employee Dark-01.png' %}" data-active-image="{% static 'Employee White-01.png' %}" class="icon-link">
+             <img src="{% static 'Employee Dark-01.png' %}" class="icon" alt="employee">
+           Employees
+         </a>
+           <a href="#" data-default-image="{% static 'Group 1000004815.png' %}" data-active-image="{% static 'Documents White-01.png' %}" class="icon-link">
+              <img src="{% static 'Group 1000004815.png' %}" class="icon" alt="docs">
+            Documents</a>
+           <a href="#" data-default-image="{% static 'Group 1000004819.png' %}" data-active-image="{% static 'Schedule White-01.png' %}" class="icon-link">
+            <img src="{% static 'Group 1000004819.png' %}" class="icon" alt="schedule">
            Schedule</a>
-         <a href="#">
-            <img src="{% static 'Tasks Icon.png' %}" class= "icon" alt="tasks">
+            <a href="#" data-default-image="{% static 'Tasks Icon.png' %}" data-active-image="{% static 'Taskboard White-01.png' %}" class="icon-link">
+              <img src="{% static 'Tasks Icon.png' %}" class="icon" alt="tasks">
            Task Board</a>
-         <a href="#">
-            <img src="{% static 'Payment Dark-01.png' %}" class= "icon" alt="payment">
-           Payment</a>
+            <a href="#" data-default-image="{% static 'Payment Dark-01.png' %}" data-active-image="{% static 'Payment White-01.png' %}" class="icon-link">
+              <img src="{% static 'Payment Dark-01.png' %}" class="icon" alt="payment">
+            Payment</a>
          <div class="title">Tools</div>
-         <a href="#">
-           <img src="{% static 'Settings Dark-01.png' %}" class= "icon" alt="settings">
+           <a href="#" data-default-image="{% static 'Settings Dark-01.png' %}" data-active-image="{% static 'Settings White-01.png' %}" class="icon-link">
+             <img src="{% static 'Settings Dark-01.png' %}" class="icon" alt="settings">
            Settings</a>
-         <a href="#">
-           <img src="{% static 'Help Dark-01.png' %}" class= "icon" alt="help">
+           <a href="#" data-default-image="{% static 'Help Dark-01.png' %}" data-active-image="{% static 'Help White-01.png' %}" class="icon-link">
+             <img src="{% static 'Help Dark-01.png' %}" class="icon" alt="help">
            Help</a>
          <div class="account">Aurora</div>
       </div>
@@ -279,17 +289,37 @@
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script>
 
-      $('.sidebar a').click(function() {
-         $('.sidebar a').removeClass('active');
-         $(this).addClass('active');
-      });
+   // Add this script in your JavaScript section
+   $(document).ready(function() {
+     $('.icon-link').hover(
+         function() {
+             var activeImage = $(this).data('active-image');
+             $(this).find('img').attr('src', activeImage);
+         },
+         function() {
+             if (!$(this).hasClass('active')) { // Only change image if not active
+                 var defaultImage = $(this).data('default-image');
+                 $(this).find('img').attr('src', defaultImage);
+             }
+         }
+     );
 
-      $(document).ready(function() {
-        $('.header1').on('click', 'a', function() {
-          $('.header1 a').removeClass('active');
-          $(this).addClass('active');
-        });
-      });
+     $('.icon-link').click(function() {
+         $('.icon-link').removeClass('active'); // Remove active class from all icon links
+         $(this).addClass('active'); // Add active class to the clicked icon link
+
+         // Update images for all icon links based on their active state
+         $('.icon-link').each(function() {
+             var defaultImage = $(this).data('default-image');
+             var activeImage = $(this).data('active-image');
+             var imgSrc = $(this).hasClass('active') ? activeImage : defaultImage;
+             $(this).find('img').attr('src', imgSrc);
+         });
+     });
+ });
+
+
+
 
    </script>
  </div>
