@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'documents/css/documents.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="add-document-container">
+        <form action="{% url 'add_document' %}" class="add-document-form"  method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h2 class="add-document-heading">Attach files</h2>
+            <label for="file" class="add-document-file">
+                <svg width="56" height="55" viewBox="0 0 56 55" fill="none" xmlns="http://www.w3.org/2000/svg" class="upload-icon">
+                    <path d="M21.3809 26.7666L27.2536 32.6333L33.1264 26.7666" stroke="#2FAC67" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M27.2529 9.16675V32.473" stroke="#2FAC67" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M45.8797 27.9124C45.8797 38.0415 38.9975 46.2457 27.5273 46.2457C16.057 46.2457 9.1748 38.0415 9.1748 27.9124" stroke="#2FAC67" stroke-width="3" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <br>
+                Click to Upload
+                <input type="file" id="file" name="file" class="" hidden value="{{ form_data.file }}">
+            </label>
+            <div class="container-75">
+                <label for="title" class="add-doc-labels">File name</label>
+                <br>
+                <input type="text" id="title" name="title" placeholder="Type here" class="add-document-input" required value="{{ form_data.title }}">
+                <br>
+                <label for="employee" class="add-doc-labels">Employee (optional)</label>
+                <br>
+                <select name="employee" id="employee" class="add-document-input">
+                    <option value="">Choose</option>
+                    {% for employee in employees %}
+                        <option value="{{ employee.id }}" {% if employee.id == form_data.employee  %} selected {% endif %}>{{ employee.first_name }} {{ employee.last_name }}</option>
+                    {% endfor %}
+                </select>
+                <br>
+                
+                <input type="submit" value="Continue" class="add-doc-submit">
+            </div>
+        {% if error %}
+            <p class="error-message">{{ error }}</p>
+        {% endif %}
+        
+        </form>
+        <div class="documents-container-col">
+            {% for document in documents.all %}
+                <div class="{% if document.doc_type == 'pdf' %}
+                                document-card document-card-pdf document-card-col
+                            {% elif document.doc_type == 'xls' or document.doc_type == 'xlsx' %}
+                                document-card document-card-excel document-card-col
+                            {% elif document.doc_type == 'doc' or document.doc_type == 'docx' %}
+                                document-card document-card-word document-card-col
+                            {% else %}
+                                document-card document-card-col
+                            {% endif %} ">
+                    <h3 class="document-card-title">{{ document.title }}</h3>
+                    <p class="document-card-timestamp">Last updated: {{ document.updated_at|date:'d. F Y.' }}</p>
+        
+                    <div class="document-card-bottom">
+                        <p class="document-card-timestamp document-card-black">{{ document.file_size_mb.size}} {{ document.file_size_mb.unit }} | {{ document.doc_type.upper }}</p>
+                        <a href="{{ document.file.url }}" download>
+                            {% if document.doc_type == 'xls' or document.doc_type == 'xlsx' %}
+                                <img src="{% static 'download2.png' %}" alt="download icon" class="download-icon">
+                            {% else %}    
+                                <img src="{% static 'download.png' %}" alt="download icon" class="download-icon">
+                            {% endif %} 
+                        
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
