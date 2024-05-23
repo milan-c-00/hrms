@@ -39,11 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'documents.apps.DocumentsConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'documents.middleware.ClearSessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -81,7 +83,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hrms',
         'USER': 'postgres',
-        'PASSWORD':'lepalukic12',
+        'PASSWORD':'12345678',
         'HOST':'localhost',
         'PORT':'5432',
     }
@@ -122,9 +124,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATICFILES_DIRS = [BASE_DIR / 'hrms/static/']
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    BASE_DIR / 'documents/static/documents',
+    BASE_DIR / 'accounts/static/accounts',
+]
 
-STATIC_ROOT= BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STATIC_URL = '/static/'
 

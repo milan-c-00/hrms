@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <h2>Edit Document</h2>
+        <form action="{% url 'edit_document' document.id %}"  method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label for="title">Title</label>
+            <br>
+            <input type="text" id="title" name="title" value="{{ document.title }}">
+            <br>
+            <label for="employee">Employee (optional)</label>
+            <br>
+            <select name="employee" id="employee">
+                <option value="" selected>{{ document.employee }}</option>
+                <option value="1">Employee 1</option>
+            </select>
+            <br>
+            <label for="file">File</label>
+            <br>
+            <input type="file" id="file" name="file">
+            <br>
+            <p>Current: {{ document.doc_name }}</p>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+{% endblock %}
