@@ -16,7 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+import employees.views
+from django.conf.urls import include
+import empPerformance.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-]
+    path('employees/',include('employees.urls')),
+    path('performance/',include('empPerformance.urls')),
+    path('tasks/',include('tasks.urls')),
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

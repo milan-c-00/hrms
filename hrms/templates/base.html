@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <style>
+      body {
+         margin: 0;
+         padding: 0;
+         font-family: 'Roboto', sans-serif;
+         background-color: #FCFBFB;
+      }
+
+      .container {
+     display: flex;
+     flex-direction: row; /* Set flex direction to row */
+  }
+
+  .sidebar {
+     width: 248px;
+     background-color: #FFFFFF;
+     padding: 20px 10px;
+     font-family: 'Roboto', sans-serif;
+     position: fixed;
+     float: left;
+     height: 100%;
+  }
+
+  .main-content {
+     flex: 1;
+     padding: 20px;
+  }
+
+
+      .sidebar a {
+         display: block;
+         color: #1B1534;
+         text-decoration: none;
+         padding: 10px 15px;
+         margin-bottom: 10px;
+         border-radius: 5px;
+      }
+
+      .sidebar a:hover {
+         background-color: #7ddea9;
+         color: #FFFFFF;
+      }
+
+      .sidebar a.active {
+         background-color: #2FAC67;
+         color: #FFFFFF;
+      }
+
+      .sidebar .title {
+         font-size: 14px;
+         font-weight: 400;
+         color: #848484;
+         padding: 10px 15px;
+         margin-top: 20px;
+      }
+
+      .sidebar .account {
+         font-size: 18px;
+         font-weight: 600;
+         text-align: center;
+         color: #1B1534;
+         background-color: #FCFBFB;
+         padding: 10px 15px;
+         border-radius: 5px;
+         margin-top: 20px;
+      }
+
+      .logo {
+        width: 32px;
+        height: 25px;
+        margin-top: 50px;
+        margin-left: 15px;
+        margin-bottom: 30px;
+      }
+
+      .icon {
+        width:20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+
+   </style>
+</head>
+<body>
+      <div class="sidebar">
+         <img src="{% static 'Logo-01.jpg' %}" class="logo" alt="Logo">
+         <div class="title">GENERAL</div>
+         <a href="#" data-default-image="{% static 'Vector.png' %}" data-active-image="{% static 'Dashboard White-01.png' %}" class="icon-link">
+           <img src="{% static 'Vector.png' %}" class="icon" alt="vector">
+            Dashboard
+         </a>
+            <a href="#" data-default-image="{% static 'Employee Dark-01.png' %}" data-active-image="{% static 'Employee White-01.png' %}" class="icon-link">
+             <img src="{% static 'Employee Dark-01.png' %}" class="icon" alt="employee">
+           Employees
+         </a>
+           <a href="#" data-default-image="{% static 'Group 1000004815.png' %}" data-active-image="{% static 'Documents White-01.png' %}" class="icon-link">
+              <img src="{% static 'Group 1000004815.png' %}" class="icon" alt="docs">
+            Documents</a>
+           <a href="#" data-default-image="{% static 'Group 1000004819.png' %}" data-active-image="{% static 'Schedule White-01.png' %}" class="icon-link">
+            <img src="{% static 'Group 1000004819.png' %}" class="icon" alt="schedule">
+           Schedule</a>
+            <a href="#" data-default-image="{% static 'Tasks Icon.png' %}" data-active-image="{% static 'Taskboard White-01.png' %}" class="icon-link">
+              <img src="{% static 'Tasks Icon.png' %}" class="icon" alt="tasks">
+           Task Board</a>
+            <a href="#" data-default-image="{% static 'Payment Dark-01.png' %}" data-active-image="{% static 'Payment White-01.png' %}" class="icon-link">
+              <img src="{% static 'Payment Dark-01.png' %}" class="icon" alt="payment">
+            Payment</a>
+         <div class="title">Tools</div>
+           <a href="#" data-default-image="{% static 'Settings Dark-01.png' %}" data-active-image="{% static 'Settings White-01.png' %}" class="icon-link">
+             <img src="{% static 'Settings Dark-01.png' %}" class="icon" alt="settings">
+           Settings</a>
+           <a href="#" data-default-image="{% static 'Help Dark-01.png' %}" data-active-image="{% static 'Help White-01.png' %}" class="icon-link">
+             <img src="{% static 'Help Dark-01.png' %}" class="icon" alt="help">
+           Help</a>
+         <div class="account">Aurora</div>
+      </div>
+
+
+        <div class="main-content">
+
+                 {% block content %}
+                 {% endblock %}
+        </div>
+
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script>
+
+
+   $(document).ready(function() {
+     $('.icon-link').hover(
+         function() {
+             var activeImage = $(this).data('active-image');
+             $(this).find('img').attr('src', activeImage);
+         },
+         function() {
+             if (!$(this).hasClass('active')) {
+                 var defaultImage = $(this).data('default-image');
+                 $(this).find('img').attr('src', defaultImage);
+             }
+         }
+     );
+
+     $('.icon-link').click(function() {
+         $('.icon-link').removeClass('active');
+         $(this).addClass('active');
+
+
+         $('.icon-link').each(function() {
+             var defaultImage = $(this).data('default-image');
+             var activeImage = $(this).data('active-image');
+             var imgSrc = $(this).hasClass('active') ? activeImage : defaultImage;
+             $(this).find('img').attr('src', imgSrc);
+         });
+     });
+ });
+
+   </script>
+ </body>
+</html>
