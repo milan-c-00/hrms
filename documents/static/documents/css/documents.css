@@ -174,8 +174,8 @@
     justify-content: space-around;
     align-items: flex-start;
     /*grid-template-columns: 1fr 2fr;*/
-    width: 80%;
-    margin-left: 20%;
+    /*width: 80%;*/
+    /*margin-left: 20%;*/
     background-color: #FCFBFB;
 }
 

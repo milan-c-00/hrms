@@ -29,6 +29,7 @@
       <list>
         <option value="$MODULE_DIR$/templates" />
         <option value="$MODULE_DIR$/documents/templates" />
+        <option value="$MODULE_DIR$/hrms/templates" />
       </list>
     </option>
   </component>

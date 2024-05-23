@@ -21,7 +21,7 @@
   }
 
   .sidebar {
-     width: 248px;
+     width: 20%;
      background-color: #FFFFFF;
      padding: 20px 10px;
      font-family: 'Roboto', sans-serif;
@@ -31,6 +31,8 @@
   }
 
   .main-content {
+      width: 80%;
+      margin-left: 20%;
      flex: 1;
      padding: 20px;
   }
@@ -89,8 +91,12 @@
       }
 
    </style>
+    {% block styles %}
+    	
+    {% endblock %}
 </head>
 <body>
+    <div class="container">
       <div class="sidebar">
          <img src="{% static 'Logo-01.jpg' %}" class="logo" alt="Logo">
          <div class="title">GENERAL</div>
@@ -130,7 +136,7 @@
                  {% block content %}
                  {% endblock %}
         </div>
-
+    </div>
 
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script>
