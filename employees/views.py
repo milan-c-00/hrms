@@ -7,6 +7,9 @@ def allemployees(request):
     employees=Employee.objects
     return render(request,'employees/allemployees.html',{'employees':employees})
 
+def add_employee(request):
+    return render(request, 'employees/add_employee.html')
+
 def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
     if request.method == 'POST':
