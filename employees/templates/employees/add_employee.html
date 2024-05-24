@@ -1,6 +1,230 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'employees/css/employees.css' %}">
+{% endblock %}
 {% block content %}
 
+<script>
+        function toggleEducationForm() {
+            let educationForm = document.getElementById('education-form');
+            let basicForm = document.getElementById('basic-form');
+            if (educationForm.style.display === 'none' || educationForm.style.display === '') {
+                educationForm.style.display = 'block';
+                basicForm.style.display = 'none';
+            } else {
+                educationForm.style.display = 'none';
+                basicForm.style.display = 'block'
+            }
+        }
+    </script>
+	<div>
+        <form action="{% url 'add_employee' %}"  class="add-employee-form" enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="add-employee-form-part" id="add-emp-photo">
+                <p>Attach picture</p>
+                <img src="" alt="">
+                <label for="employee-photo" class="add-employee-btn">Upload New</label>
+                <input type="file" id="employee-photo" hidden="hidden" name="image">
+            </div>
+            <div id="basic-form" class="add-employee-form-part">
+                <p>Basic information</p>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="name" class="add-employee-label">Name</label>
+                        <br>
+                        <input id="name" type="text" name="name" placeholder="Type here" class="add-employee-input" required value="{{ form_data.name }}">
+                    </div>
+                    <div>
+                        <label for="birth_date" class="add-employee-label">Birth date</label>
+                        <br>
+                        <input id="birth_date" type="date" name="birth_date" placeholder="Choose" class="add-employee-input" required value="{{ form_data.birth_date }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="position" class="add-employee-label">Position</label>
+                        <br>
+                        <input id="position" type="text" name="position" placeholder="Type here" class="add-employee-input" required value="{{ form_data.position }}">
+                    </div>
+                    <div>
+                        <label for="team" class="add-employee-label">Team</label>
+                        <br>
+                        <input id="team" type="text" name="team" placeholder="Choose" class="add-employee-input" required value="{{ form_data.team }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="phone" class="add-employee-label">Phone</label>
+                        <br>
+                        <input id="phone" type="tel" name="phone" placeholder="Type here" class="add-employee-input" required value="{{ form_data.phone }}">
+                    </div>
+                    <div>
+                        <label for="education" class="add-employee-label">Education and Work</label>
+                        <br>
+                        <input id="education" type="button" onclick="toggleEducationForm()" value="Add education" class="add-employee-input">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="personal_email" class="add-employee-label">Personal email</label>
+                        <br>
+                        <input id="personal_email" type="email" name="personal_email" placeholder="Type here" class="add-employee-input" value="{{ form_data.personal_email }}">
+                    </div>
+                    <div>
+                        <label for="professional_email" class="add-employee-label">Professional email</label>
+                        <br>
+                        <input id="professional_email" type="email" name="professional_email" placeholder="Type here" class="add-employee-input" value="{{ form_data.professional_email }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="city" class="add-employee-label">City</label>
+                        <br>
+                        <input id="city" type="text" name="city" placeholder="Type here" class="add-employee-input" value="{{ form_data.city }}">
+                    </div>
+                    <div>
+                        <label for="address" class="add-employee-label">Address</label>
+                        <br>
+                        <input id="address" type="text" name="address" placeholder="Type here" class="add-employee-input" value="{{ form_data.address }}">
+                    </div>
+                </div>
+
+                <p>Contract details</p>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="status" class="add-employee-label">Status</label>
+                        <br>
+                        <input id="status" type="text" name="status" placeholder="Type here" class="add-employee-input" value="{{ form_data.status }}">
+                    </div>
+                    <div>
+                        <label for="internship" class="add-employee-label">Internship</label>
+                        <br>
+{#                        <input id="internship" type="text" name="internship" placeholder="Type here" class="add-employee-input">#}
+                        <select name="internship" id="internship" class="add-employee-input">
+                            <option value="1" {% if form_data.internship == '1'  %} selected {% endif %}>Yes</option>
+                            <option value="0" {% if form_data.internship == '0'  %} selected {% endif %}>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="contract_start_date" class="add-employee-label">Start date</label>
+                        <br>
+                        <input id="contract_start_date" type="date" name="contract_start_date" placeholder="Type here" class="add-employee-input" value="{{ form_data.contract_start_date }}">
+                    </div>
+                    <div>
+                        <label for="contract_end_date" class="add-employee-label">End date</label>
+                        <br>
+                        <input id="contract_end_date" type="date" name="contract_end_date" placeholder="Type here" class="add-employee-input" value="{{ form_data.contract_end_date }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div id="salary-div">
+                        <label for="salary" class="add-employee-label">Salary</label>
+                        <br>
+                        <input id="salary" type="text" name="salary" placeholder="Type here" class="add-employee-input" value="{{ form_data.salary }}">
+                    </div>
+                </div>
+                {% if error %}
+                    <p class="error-message">{{ error }}</p>
+                {% endif %}
+                <button type="submit" class="add-employee-btn">Add Employee</button>
+            </div>
+            <div id="education-form" class="add-employee-form-part" style="display: none">
+                <p>Education</p>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="school" class="add-employee-label">School</label>
+                        <br>
+                        <input id="school" type="text" name="school" placeholder="Type here" class="add-employee-input" value="{{ form_data.school }}">
+                    </div>
+                    <div>
+                        <label for="school_location" class="add-employee-label">Location</label>
+                        <br>
+                        <input id="school_location" type="text" name="school_location" placeholder="Type here" class="add-employee-input"  value="{{ form_data.school_location }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="school_city" class="add-employee-label">City</label>
+                        <br>
+                        <input id="school_city" type="text" name="school_city" placeholder="Type here" class="add-employee-input" value="{{ form_data.school_city }}">
+                    </div>
+                    <div>
+                        <label for="degree" class="add-employee-label">Degree</label>
+                        <br>
+                        <input id="degree" type="text" name="degree" placeholder="Type here" class="add-employee-input" value="{{ form_data.degree }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="school_start_date" class="add-employee-label">Start date</label>
+                        <br>
+                        <input id="school_start_date" type="date" name="school_start_date" placeholder="Type here" class="add-employee-input" value="{{ form_data.school_start_date }}">
+                    </div>
+                    <div>
+                        <label for="school_end_date" class="add-employee-label">End date</label>
+                        <br>
+                        <input id="school_end_date" type="date" name="school_end_date" placeholder="Type here" class="add-employee-input" value="{{ form_data.school_end_date }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div id="salary-div">
+                        <label for="education_details" class="add-employee-label">Details</label>
+                        <br>
+                        <textarea name="education_details" id="education_details" cols="30" rows="5" class="add-employee-input">{{ form_data.education_details }}</textarea>
+                    </div>
+                </div>
+
+                <p>Work experience</p>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="company" class="add-employee-label">School</label>
+                        <br>
+                        <input id="company" type="text" name="company" placeholder="Type here" class="add-employee-input" value="{{ form_data.company }}">
+                    </div>
+                    <div>
+                        <label for="company_location" class="add-employee-label">Location</label>
+                        <br>
+                        <input id="company_location" type="text" name="company_location" placeholder="Type here" class="add-employee-input" value="{{ form_data.company_location }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="company_city" class="add-employee-label">City</label>
+                        <br>
+                        <input id="company_city" type="text" name="company_city" placeholder="Type here" class="add-employee-input" value="{{ form_data.company_city }}">
+                    </div>
+                    <div>
+                        <label for="work_position" class="add-employee-label">Position</label>
+                        <br>
+                        <input id="work_position" type="text" name="work_position" placeholder="Type here" class="add-employee-input" value="{{ form_data.work_position }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="work_start_date" class="add-employee-label">Start date</label>
+                        <br>
+                        <input id="work_start_date" type="date" name="work_start_date" placeholder="Type here" class="add-employee-input" value="{{ form_data.work_start_date }}">
+                    </div>
+                    <div>
+                        <label for="work_end_date" class="add-employee-label">End date</label>
+                        <br>
+                        <input id="work_end_date" type="date" name="work_end_date" placeholder="Type here" class="add-employee-input" value="{{ form_data.work_end_date }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div id="salary-div">
+                        <label for="work_details" class="add-employee-label">Details</label>
+                        <br>
+                        <textarea name="work_details" id="work_details" cols="30" rows="5" class="add-employee-input">{{ form_data.work_details }}</textarea>
+                    </div>
+                </div>
+                <button type="button" onclick="toggleEducationForm()" class="add-employee-btn">Continue</button>
+            </div>
+
+        </form>
+    </div>
 
 {% endblock %}

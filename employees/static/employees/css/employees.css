@@ -1,0 +1,87 @@
+
+.add-employee-form-part {
+    font-family: roboto, sans-serif;
+    font-weight: 600;
+    font-size: 1.5vw;
+    background-color: #FFFFFF;
+    border-radius: 0.5vw;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    padding: 2vw;
+    margin: 2vw;
+}
+
+.add-employee-label {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    color: #8C8A8A;
+}
+
+.add-employee-btn {
+    color: #FFFFFF;
+    font-size: 1vw;
+    font-family: roboto, sans-serif;
+    font-weight: 500;
+    border: none;
+    background-color: #2FAC67;
+    border-radius: 0.5vw;
+    padding: 0.6em 1.5em;
+    text-align: center;
+}
+
+.add-employee-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.add-employee-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.add-employee-row div {
+    width: 50%;
+    margin: 1vw;
+}
+
+.add-employee-input {
+    border: 1px solid #8C8A8A;
+    font-family: roboto, sans-serif;
+    color: #8C8A8A;
+    font-size: 1vw;
+    /*height: 2em;*/
+    padding: 1em 5%;
+    width: 90%;
+    border-radius: 0.2vw;
+}
+
+#basic-form, #education-form {
+    width: 60%;
+}
+#add-emp-photo {
+    width: 20%;
+}
+
+#education {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    border: 1px solid #8C8A8A;
+    border-radius: 0.2vw;
+    background-color: #FFFFFF;
+    color: #2FAC67;
+    height: 100%;
+    width: 100%;
+    padding: 1em 1.5em;
+}
+
+#salary-div {
+    width: 100%;
+}
+
+.error-message {
+    font-size: 1vw;
+    color: red;
+}

@@ -134,6 +134,7 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
     BASE_DIR / 'documents/static/documents',
     BASE_DIR / 'accounts/static/accounts',
+    BASE_DIR / 'employees/static/employees',
 ]
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'

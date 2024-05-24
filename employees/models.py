@@ -43,33 +43,33 @@ class Employee(models.Model):
     birth_date = models.DateField()
     position = models.CharField(max_length=255)
     team = models.CharField(max_length=255)
-    phone = models.CharField(max_length=255, null=True, blank=True)
-    personal_email = models.CharField(max_length=255, null=True, blank=True)
-    professional_email = models.CharField(max_length=255, null=True, blank=True)
+    phone = models.CharField(max_length=255)
+    personal_email = models.EmailField(max_length=255, null=True, blank=True)
+    professional_email = models.EmailField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
-    country = models.CharField(max_length=255, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
 
 
 class Education(models.Model):
-    school = models.CharField(max_length=255)
+    school = models.CharField(max_length=255, null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     degree = models.CharField(max_length=255)
-    start_date = models.DateField()
-    end_date = models.DateField()
-    employee = models.ForeignKey(Employee, name='education', on_delete=models.CASCADE)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    details = models.TextField(null=True, blank=True)
+    employee = models.ForeignKey(Employee, related_name='education', on_delete=models.CASCADE)
 
 
 class WorkExperience(models.Model):
-    company = models.CharField(max_length=255)
+    company = models.CharField(max_length=255, null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
     position = models.CharField(max_length=255, null=True, blank=True)
-    start_date = models.DateField()
-    end_date = models.DateField()
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
     details = models.TextField(null=True, blank=True)
-    employee = models.ForeignKey(Employee, name='work_experience', on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, related_name='work_experience', on_delete=models.CASCADE)
 
 
 class Contract(models.Model):
@@ -77,8 +77,8 @@ class Contract(models.Model):
     internship = models.BooleanField(default=False)
     start_date = models.DateField()
     end_date = models.DateField()
-    salary = models.FloatField()
-    employee = models.ForeignKey(Employee, name='contract', on_delete=models.CASCADE)
+    salary = models.DecimalField(decimal_places=2, max_digits=10)
+    employee = models.ForeignKey(Employee, related_name='contract', on_delete=models.CASCADE)
 
 
     
