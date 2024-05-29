@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 
+import os.path
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -41,11 +42,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts.apps.AccountsConfig',
+    'documents.apps.DocumentsConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'documents.middleware.ClearSessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -58,7 +62,7 @@ ROOT_URLCONF = 'hrms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['hrms/templates'],
+        'DIRS': ['hrms/templates', 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hrms',
         'USER': 'postgres',
-        'PASSWORD':'lepalukic12',
+        'PASSWORD':'12345678',
         'HOST':'localhost',
         'PORT':'5432',
     }
@@ -126,10 +130,14 @@ USE_TZ = True
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'empPerformance/static/'),
-    os.path.join(BASE_DIR, 'hrms/static/')
+    os.path.join(BASE_DIR, 'hrms/static/'),
+    BASE_DIR / 'static',
+    BASE_DIR / 'documents/static/documents',
+    BASE_DIR / 'accounts/static/accounts',
 ]
 
-STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATIC_URL = '/static/'
 
 # Default primary key field type

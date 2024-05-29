@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'documents/css/documents.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="heading-container">
+        <h1 class="documents-heading">Documents</h1>
+        <form action="{% url 'index' %}" class="documents-search-form" method="GET">
+            <input type="text" class="documents-search-input" name="term" placeholder="Search">
+        </form>
+    </div>
+    <div class="documents-navbar">
+        <h3>Overview</h3>
+        <div>
+            <input type="button" class="documents-filter" value="Filter">
+            <a href="{% url 'add_document' %}" class="documents-add">Add +</a>
+        </div>
+    </div>
+    <div class="documents-container">
+    {% for document in documents.all %}
+        <div class="{% if document.doc_type == 'pdf' %}
+                        document-card document-card-pdf
+                    {% elif document.doc_type == 'xls' or document.doc_type == 'xlsx' %}
+                        document-card document-card-excel
+                    {% elif document.doc_type == 'doc' or document.doc_type == 'docx' %}
+                        document-card document-card-word
+        	        {% else %}
+        	            document-card
+                    {% endif %} ">
+            <h3 class="document-card-title">{{ document.title }}</h3>
+            <p class="document-card-timestamp">Last updated: {{ document.updated_at|date:'d. F Y.' }}</p>
+
+            <div class="document-card-bottom">
+                <p class="document-card-timestamp document-card-black">{{ document.file_size_mb.size}} {{ document.file_size_mb.unit }} | {{ document.doc_type.upper }}</p>
+                <a href="{{ document.file.url }}" download>
+                    {% if document.doc_type == 'xls' or document.doc_type == 'xlsx' %}
+                        <img src="{% static 'download2.png' %}" alt="download icon" class="download-icon">
+                    {% else %}    
+                        <img src="{% static 'download.png' %}" alt="download icon" class="download-icon">
+                    {% endif %} 
+                
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endblock %}

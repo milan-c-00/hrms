@@ -1,36 +1,35 @@
-{%extends 'base.html'%}
+{% extends 'base.html' %}
+{% block content %}
 
 <!DOCTYPE html>
 <html>
   <head>
     {% load static %}
     <title>Employee Performance</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <!-- Include Font -->
-     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-     <!-- Bootstrap -->
-     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Include Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
     <style>
-
-        html {
-          background-color: #FCFBFB;
-        }
-
+      html {
+        background-color: #FCFBFB;
+      }
 
       .float-parent-element {
         width: 100%;
+        float: right;
       }
 
       .float-child-element1 {
         float: left;
         width: 55%;
-
       }
 
       .float-child-element2 {
         float: left;
         width: 45%;
-
       }
 
       .left-div1 {
@@ -61,7 +60,7 @@
         border-radius: 5px;
       }
 
-      .div-h1{
+      .div-h1 {
         margin-left: 23px;
         font-family: Poppins;
         font-size: 22px;
@@ -71,76 +70,222 @@
       }
 
       .container {
-        width: 65%;
+        width: 100%;
         margin: 15px auto;
         padding-bottom: 20px;
         padding-top: 10px;
       }
 
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+      }
+
+      .header h1 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 30px;
+        line-height: 50px;
+        color: #1B1534;
+      }
+
+      .search-form {
+        display: flex;
+        position: absolute;
+        right: 20px;
+      }
+
+      .search-input {
+        width: 500px;
+        height: 30px;
+        padding: 10px;
+        border: none;
+        outline: none;
+      }
+
+      .notification-button {
+        width: 30px;
+        height: 30px;
+        background: #FFFFFF;
+        border: 2px;
+        margin-left: 20px;
+      }
+
+      .notification-button img {
+        width: 20px;
+        height: 20px;
+      }
+
+      .search-button {
+        width: 100px;
+        height: 40px;
+        background-color: #1B1534;
+        color: #fff;
+        border: none;
+        outline: none;
+        border-radius: 20px;
+        -left: 10px;
+        cursor: pointer;
+      }
+
+      .header1 a {
+        font-family: 'Roboto', sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: 22.5px;
+        text-align: center;
+        color: #8D8D8D;
+        text-decoration: none;
+        margin-left: 23px;
+        margin-top: 40px;
+        margin-right: 20px;
+      }
+
+      .header1 a:last-child {
+        margin-right: 0;
+      }
+
+      .header1 a.active {
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 30px;
+        text-align: center;
+        color: #1B1534;
+      }
+
+      .horizontal-line {
+        border: none;
+        border-top: 1px solid #8D8D8D1A;
+        margin-top: 25px;
+        margin-left: 23px;
+        margin-right: 17px;
+        margin-bottom: 40px;
+      }
+
+      .add-button {
+        position: absolute;
+        right: 20px;
+        top: 22%;
+        transform: translateY(-50%);
+        background-color: #2FAC67;
+        color: #fff;
+        border: none;
+        padding: 8px;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 85px;
+        height: 35px;
+        gap: 0px;
+        border-radius: 5px;
+        opacity: 0px;
+        font-size: 15px;
+      }
+
+      .add-button img {
+        width: 8px;
+        height: 8px;
+      }
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
     </style>
   </head>
-  {%block content%}
   <body>
-
-      <div class="float-parent-element">
-        <div class="float-child-element1">
-          <div class="div-h1">Performance
-            <div class="left-div1"></div>
-            <div class="left-div2"></div>
+    <div class="float-parent-element">
+      <div class="container float-child-element1">
+        <div class="content">
+          <div class="header">
+            <h1>Employees</h1>
+            <form action="/search" method="GET" class="search-form">
+              <input type="search" name="q" class="search-input" placeholder="Search">
+              <button type="button" onclick="myFunction()" class="notification-button">
+                <img src="{% static 'notification.png' %}" class="d-inline-block align-top" alt="Notification" />
+              </button>
+            </form>
           </div>
+          <div class="header1">
+            <a href="#overview" class="nav-link">Overview</a>
+            <a href="#performance" class="nav-link">Performance</a>
+            <a href="#interns" class="nav-link">Interns</a>
+            <button type="button" onclick="myFunction()" class="add-button">
+              Add
+              <img src="{% static 'plus.png' %}" class="d-inline-block align-top" alt="Plus" />
+            </button>
+          </div>
+          <hr class="horizontal-line">
         </div>
-
-        <div class="float-child-element2">
-          <div class="right">Statistic on April
-            <div class="container">
-              <canvas id="myChart" style="width:100%;max-width:400px;"></canvas>
-            </div>
+      </div>
+      <div class="float-child-element1">
+        <div class="div-h1">Performance
+          <div class="left-div1"></div>
+          <div class="left-div2"></div>
+        </div>
+      </div>
+      <div class="float-child-element2">
+        <div class="right">Statistic on April
+          <div class="container">
+            <canvas id="myChart" style="max-width:400px;"></canvas>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var ctx = document.getElementById("myChart").getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ["Tasks in Progress", "Completed Work", "To do"],
-          datasets: [{
-            backgroundColor: [
-              "#1B1534",
-              "#EFFFF6",
-              "#2FAC67"
-            ],
-            data: [10, 5, 48]
-          }]
-        },
-        options: {
-          cutoutPercentage: 70,
-          legend: {
-            display: true,
-            position: 'bottom',
-            labels: {
-              usePointStyle: true,
-              fontFamily: 'Roboto',
-              lineHeight: 25.2,
-              padding: 30,
-            }
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'doughnut',
+          data: {
+            labels: ["Tasks in Progress", "Completed Work", "To do"],
+            datasets: [{
+              backgroundColor: [
+                "#1B1534",
+                "#EFFFF6",
+                "#2FAC67"
+              ],
+              data: [10, 5, 48]
+            }]
           },
-          plugins: {
+          options: {
+            cutoutPercentage: 70,
             legend: {
-              align: 'center'
+              display: true,
+              position: 'bottom',
+              labels: {
+                usePointStyle: true,
+                fontFamily: 'Roboto',
+                lineHeight: 25.2,
+                padding: 30,
+              }
+            },
+            plugins: {
+              legend: {
+                align: 'center'
+              }
             }
           }
-        }
+        });
+
+        var navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(function(link) {
+          link.addEventListener('click', function() {
+            navLinks.forEach(function(link) {
+              link.classList.remove('active');
+            });
+            this.classList.add('active');
+          });
+        });
       });
-    });
-  </script>
+    </script>
   </body>
   {% endblock %}
 </html>

@@ -14,18 +14,35 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-from django.conf import settings
 from django.conf.urls.static import static
 import employees.views
 from django.conf.urls import include
 import empPerformance.views
-import tasks.views
+from django.contrib import admin
+from django.urls import path, include
+
+from accounts import views
+from hrms import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('employees/',include('employees.urls')),
     path('performance/',include('empPerformance.urls')),
     path('tasks/',include('tasks.urls')),
-]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    path('', views.home, name='home'),
+    path('accounts/', include('accounts.urls')),
+    path('documents/', include('documents.urls')),
+    path('employees/',include('employees.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# =======
+# from django.urls import path
+# from django.conf import settings
+# from django.conf.urls.static import static
+# import employees.views
+# from django.conf.urls import include
+#
+# urlpatterns = [
+#     path('admin/', admin.site.urls),
+#     path('employees/',include('employees.urls'))
+# ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+# >>>>>>> upstream/master

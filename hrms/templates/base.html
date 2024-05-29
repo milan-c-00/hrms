@@ -15,24 +15,26 @@
          background-color: #FCFBFB;
       }
 
-      .container {
+      .container1 {
      display: flex;
-     flex-direction: row; /* Set flex direction to row */
+     flex-direction: row;
   }
 
   .sidebar {
-     width: 248px;
+     width: 20%;
      background-color: #FFFFFF;
      padding: 20px 10px;
      font-family: 'Roboto', sans-serif;
      position: fixed;
+     float: left;
      height: 100%;
   }
 
   .main-content {
+      width: 80%;
+      margin-left: 20%;
      flex: 1;
      padding: 20px;
-     margin-left: 248px;
   }
 
 
@@ -74,204 +76,100 @@
          margin-top: 20px;
       }
 
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-      }
-
-      .header h1 {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        font-size: 30px;
-        line-height: 50px;
-        color: #1B1534;
-      }
-
-      .search-form {
-        display: flex;
-        position: absolute;
-        right: 20px;
-      }
-
-      .search-input {
-        width: 500px;
-        height: 30px;
-        padding: 10px;
-        border: none;
-        outline: none;
-      }
-
-      .notification-button {
-        width: 30px;
-        height: 30px;
-        background: #FFFFFF;
-        border: 2px;
-        margin-left: 20px;
-      }
-
-      .notification-button img {
-        width: 20px;
-        height: 20px;
-      }
-
-      .search-button {
-        width: 100px;
-        height: 40px;
-        background-color: #1B1534;
-        color: #fff;
-        border: none;
-        outline: none;
-        border-radius: 20px;
-        -left: 10px;
-        cursor: pointer;
-      }
-
-      .header1 a {
-        font-family: 'Roboto', sans-serif;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 22.5px;
-        text-align: center;
-        color: #8D8D8D;
-        text-decoration: none;
-        margin-left: 23px;
-        margin-top: 40px;
-        margin-right: 20px;
-      }
-
-      .header1 a:last-child {
-        margin-right: 0;
-      }
-
-      .header1 a.active {
-        font-family: 'Roboto', sans-serif;
-        font-size: 20px;
-        font-weight: 600;
-        line-height: 30px;
-        text-align: center;
-        color: #1B1534;
-      }
-
-      .horizontal-line {
-        border: none;
-        border-top: 1px solid #8D8D8D1A;
-        margin-top: 25px;
-        margin-left: 23px;
-        margin-right: 17px;
-        margin-bottom: 40px;
-      }
-
-  .add-button {
-    position: absolute;
-    right: 20px; /* Adjust this value as needed to control the distance from the right side */
-    top: 22%; /* Align the button vertically in the middle of its container */
-    transform: translateY(-50%);
-      background-color: #2FAC67;
-      color: #fff;
-      border: none;
-      padding:8px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 85px;
-      height: 35px;
-      gap: 0px;
-      border-radius: 5px;
-      opacity: 0px;
-      font-size: 15px;
-  }
-
-      .add-button img {
-        width: 8px;
-        height: 8px;
-      }
-
       .logo {
-        width: 30px;
-        height: 20px;
+        width: 32px;
+        height: 25px;
         margin-top: 50px;
         margin-left: 15px;
         margin-bottom: 30px;
       }
+
+      .icon {
+        width:20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+
    </style>
+    {% block styles %}
+
+    {% endblock %}
 </head>
 <body>
-<div class="container">
-
-   <div class="container">
+    <div class="container1">
       <div class="sidebar">
          <img src="{% static 'Logo-01.jpg' %}" class="logo" alt="Logo">
          <div class="title">GENERAL</div>
-         <a href="#">Dashboard</a>
-         <a href="#">Employees</a>
-         <a href="#">Documents</a>
-         <a href="#">Schedule</a>
-         <a href="#">Task Board</a>
-         <a href="#">Payment</a>
+         <a href="#" data-default-image="{% static 'Vector.png' %}" data-active-image="{% static 'Dashboard White-01.png' %}" class="icon-link">
+           <img src="{% static 'Vector.png' %}" class="icon" alt="vector">
+            Dashboard
+         </a>
+            <a href="#" data-default-image="{% static 'Employee Dark-01.png' %}" data-active-image="{% static 'Employee White-01.png' %}" class="icon-link">
+             <img src="{% static 'Employee Dark-01.png' %}" class="icon" alt="employee">
+           Employees
+         </a>
+           <a href="#" data-default-image="{% static 'Group 1000004815.png' %}" data-active-image="{% static 'Documents White-01.png' %}" class="icon-link">
+              <img src="{% static 'Group 1000004815.png' %}" class="icon" alt="docs">
+            Documents</a>
+           <a href="#" data-default-image="{% static 'Group 1000004819.png' %}" data-active-image="{% static 'Schedule White-01.png' %}" class="icon-link">
+            <img src="{% static 'Group 1000004819.png' %}" class="icon" alt="schedule">
+           Schedule</a>
+            <a href="#" data-default-image="{% static 'Tasks Icon.png' %}" data-active-image="{% static 'Taskboard White-01.png' %}" class="icon-link">
+              <img src="{% static 'Tasks Icon.png' %}" class="icon" alt="tasks">
+           Task Board</a>
+            <a href="#" data-default-image="{% static 'Payment Dark-01.png' %}" data-active-image="{% static 'Payment White-01.png' %}" class="icon-link">
+              <img src="{% static 'Payment Dark-01.png' %}" class="icon" alt="payment">
+            Payment</a>
          <div class="title">Tools</div>
-         <a href="#">Settings</a>
-         <a href="#">Help</a>
+           <a href="#" data-default-image="{% static 'Settings Dark-01.png' %}" data-active-image="{% static 'Settings White-01.png' %}" class="icon-link">
+             <img src="{% static 'Settings Dark-01.png' %}" class="icon" alt="settings">
+           Settings</a>
+           <a href="#" data-default-image="{% static 'Help Dark-01.png' %}" data-active-image="{% static 'Help White-01.png' %}" class="icon-link">
+             <img src="{% static 'Help Dark-01.png' %}" class="icon" alt="help">
+           Help</a>
          <div class="account">Aurora</div>
       </div>
 
-      <div class="main-content">
 
+        <div class="main-content">
 
-
-        <div class="container">
-          <div class="content">
-
-            <div class="header">
-              {% block header %}
-              <h1>Employees</h1>
-              {% endblock %}
-              <form action="/search" method="GET" class="search-form">
-                <input type="search" name="q" class="search-input" placeholder="Search">
-
-                <button type="button" onclick="myFunction()" class="notification-button">
-                  <img src="{% static 'notification.png' %}" class="d-inline-block align-top" alt="Notification" />
-                </button>
-              </form>
-            </div>
-
-            <div class="header1">
-              <a href="#overview">Overview</a>
-              <a href="#performance">Performance</a>
-              <a href="#interns">Interns</a>
-
-              <button type="button" onclick="myFunction()" class="add-button">
-                Add
-                <img src="{% static 'plus.png' %}" class="d-inline-block align-top" alt="Plus" />
-              </button>
-            </div>
-
-            <hr class="horizontal-line">
-          </div>
+                 {% block content %}
+                 {% endblock %}
         </div>
+    </div>
 
-
-         {% block content %}
-         {% endblock %}
-
-      </div>
-   </div>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
    <script>
 
-      $('.sidebar a').click(function() {
-         $('.sidebar a').removeClass('active');
-         $(this).addClass('active');
-      });
 
-      $(document).ready(function() {
-        $('.header1').on('click', 'a', function() {
-          $('.header1 a').removeClass('active');
-          $(this).addClass('active');
-        });
-      });
+   $(document).ready(function() {
+     $('.icon-link').hover(
+         function() {
+             var activeImage = $(this).data('active-image');
+             $(this).find('img').attr('src', activeImage);
+         },
+         function() {
+             if (!$(this).hasClass('active')) {
+                 var defaultImage = $(this).data('default-image');
+                 $(this).find('img').attr('src', defaultImage);
+             }
+         }
+     );
+
+     $('.icon-link').click(function() {
+         $('.icon-link').removeClass('active');
+         $(this).addClass('active');
+
+
+         $('.icon-link').each(function() {
+             var defaultImage = $(this).data('default-image');
+             var activeImage = $(this).data('active-image');
+             var imgSrc = $(this).hasClass('active') ? activeImage : defaultImage;
+             $(this).find('img').attr('src', imgSrc);
+         });
+     });
+ });
 
    </script>
- </div>
-</body>
+ </body>
 </html>
