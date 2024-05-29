@@ -47,6 +47,11 @@
     margin: 1vw;
 }
 
+.add-employee-row div select {
+    width: 100%;
+    padding: 1em 5%;
+}
+
 .add-employee-input {
     border: 1px solid #8C8A8A;
     font-family: roboto, sans-serif;
@@ -84,4 +89,216 @@
 .error-message {
     font-size: 1vw;
     color: red;
+}
+
+.heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1.5%;
+    background-color: #FCFBFB;
+}
+
+.employees-heading {
+    font-family: roboto, sans-serif;
+    font-weight: 600;
+    font-size: 2.5vw;
+}
+
+
+.employees-search-form {
+    width: 40%;
+    max-width: 40%;
+}
+
+.employees-search-input {
+    width: 100%;
+    border: 0;
+    height: 3.2em;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 1vw;
+    line-height: 1.25em;
+    color: #8C8A8A;
+    padding: 0 2% 0 2%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 6px 16px;
+}
+
+.employees-search-input:focus {
+    outline: none;
+    border-color: transparent;
+}
+
+.employees-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1.5%;
+    background-color: #FCFBFB;
+    border-bottom: 1px solid #8D8D8D;
+}
+
+.employees-navbar h3 {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    font-weight: 500;
+    margin: 0 1vw 0 0;
+    padding: 1vw;
+}
+
+h3 a {
+    text-decoration: none;
+    color: #8C8A8A;
+}
+h3 a.active {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+.active-line {
+    border-bottom: 4px solid #2FAC67;
+}
+
+.employees-add {
+    color: #FFFFFF;
+    background-color: #2FAC67;
+    font-family: roboto, sans-serif;
+    font-weight: 500;
+    font-size: 1vw;
+    border-radius: 0.5vw;
+    padding: 0.8em 1.2em;
+    text-decoration: none;
+}
+
+.employees-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.employees-table {
+    width: 97%;
+    margin: 1em 1.5%;
+    background-color: #FFFFFF;
+    padding: 2vw;
+    border-radius: 0.5vw;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+
+}
+
+.employees-table-header {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    color: #8C8A8A;
+    text-align: left;
+}
+
+.employees-table-body {
+    font-family: roboto, sans-serif;
+    font-size: 1.3vw;
+    font-weight: 700;
+}
+
+.employees-table-body td {
+    padding: 1em 0;
+    border: none;
+}
+
+.employees-table-body tr:hover {
+    background-color: #EFFFF6;
+}
+
+.employee-img-small {
+    width: 3.2vw;
+    height: 3.2vw;
+    border-radius: 50%;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.vertical-dots-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 3.2vw; /* Adjust height as needed */
+    width: 3.2vw; /* Adjust width as needed */
+    cursor: pointer;
+}
+
+.dot {
+    height: 4px; /* Size of the dot */
+    width: 4px; /* Size of the dot */
+    background-color: #2FAC67; /* Color of the dot */
+    border-radius: 50%;
+    margin: 2px 0; /* Space between the dots */
+}
+
+.vertical-dots-menu:hover .dot {
+    background-color: #555; /* Change color on hover */
+}
+
+.statistics-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 97%;
+    margin: 1.5%;
+}
+
+.statistics-card {
+    background-color: #FFFFFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    border-radius: 0.5vw;
+    width: 18%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.statistics-card img {
+    width: 20%;
+    max-width: 20%;
+    margin: 1vw;
+}
+.statistics-card h2 {
+    font-size: 1.5vw;
+    font-weight: 600;
+    margin: 1vw 0 0 0;
+}
+
+.statistics-card-detail {
+    font-size: 0.8vw;
+    font-weight: 400;
+    color: #8C8A8A;
+    margin: 0 0 0 0;
+}
+
+.statistics-card-detail-green {
+    font-size: 0.7vw;
+    font-weight: 600;
+    color: #2FAC67;
+    margin: 1em 0 0 0;
+}
+
+.statistics-card-detail-dark {
+    font-size: 0.7vw;
+    font-weight: 600;
+    color: #1B1534;
+    margin: 1em 0 0 0;
+}
+
+.statistics-card-detail-black {
+    font-size: 0.7vw;
+    font-weight: 600;
+    color: #1B1534;
+    margin-top: 0.6em;
 }

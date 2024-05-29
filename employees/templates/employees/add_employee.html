@@ -50,7 +50,14 @@
                     <div>
                         <label for="team" class="add-employee-label">Team</label>
                         <br>
-                        <input id="team" type="text" name="team" placeholder="Choose" class="add-employee-input" required value="{{ form_data.team }}">
+{#                        <input id="team" type="text" name="team" placeholder="Choose" class="add-employee-input" required value="{{ form_data.team }}">#}
+                        <select name="team" id="team" class="add-employee-input" required>
+                            <option value="Designer" {% if form_data.team == 'Designer' %}selected{% endif %}>Designer</option>
+                            <option value="Developer" {% if form_data.team == 'Developer' %}selected{% endif %}>Developer</option>
+                            <option value="Marketing" {% if form_data.team == 'Marketing' %}selected{% endif %}>Marketing</option>
+                            <option value="Other" {% if form_data.team == 'Other' %}selected{% endif %}>Other</option>
+                            <option value="Support" {% if form_data.team == 'Support' %}selected{% endif %}>Support</option>
+                        </select>
                     </div>
                 </div>
                 <div class="add-employee-row">
@@ -123,7 +130,7 @@
                     <div id="salary-div">
                         <label for="salary" class="add-employee-label">Salary</label>
                         <br>
-                        <input id="salary" type="text" name="salary" placeholder="Type here" class="add-employee-input" value="{{ form_data.salary }}">
+                        <input id="salary" type="number" name="salary" placeholder="Type here" class="add-employee-input" value="{{ form_data.salary }}">
                     </div>
                 </div>
                 {% if error %}

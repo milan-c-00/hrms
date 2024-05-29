@@ -49,6 +49,18 @@ class Employee(models.Model):
     city = models.CharField(max_length=255, null=True, blank=True)
     address = models.CharField(max_length=255, null=True, blank=True)
 
+    def __str__(self):
+        return self.name
+
+    def employee_contract(self):
+        return self.contract_set.first()
+
+    def employee_education(self):
+        return self.education_set.first()
+
+    def employee_work_experience(self):
+        return self.workexperience_set.first()
+
 
 class Education(models.Model):
     school = models.CharField(max_length=255, null=True, blank=True)
@@ -58,7 +70,7 @@ class Education(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     details = models.TextField(null=True, blank=True)
-    employee = models.ForeignKey(Employee, related_name='education', on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
 
 class WorkExperience(models.Model):
@@ -69,7 +81,7 @@ class WorkExperience(models.Model):
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     details = models.TextField(null=True, blank=True)
-    employee = models.ForeignKey(Employee, related_name='work_experience', on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
 
 class Contract(models.Model):
@@ -78,7 +90,7 @@ class Contract(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     salary = models.DecimalField(decimal_places=2, max_digits=10)
-    employee = models.ForeignKey(Employee, related_name='contract', on_delete=models.CASCADE)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
 
     

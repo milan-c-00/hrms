@@ -5,9 +5,25 @@ from .models import Employee, Contract, Education, WorkExperience
 
 
 def allemployees(request):
+    if 'term' in request.GET:
+        employees = Employee.objects.filter(name__icontains=request.GET.get('term'))
+        return render(request, 'employees/allemployees.html', {'employees': employees})
     employees=Employee.objects
     return render(request,'employees/allemployees.html',{'employees':employees})
 
+def all_performance(request):
+    if 'term' in request.GET:
+        employees = Employee.objects.filter(name__icontains=request.GET.get('term'))
+        return render(request, 'employees/all_performance.html', {'employees': employees})
+    employees=Employee.objects
+    return render(request, 'employees/all_performance.html', {'employees':employees})
+
+def interns(request):
+    if 'term' in request.GET:
+        employees = Employee.objects.filter(name__icontains=request.GET.get('term'))
+        return render(request, 'employees/interns.html', {'employees': employees})
+    employees = Employee.objects.filter(contract__internship=True).distinct()
+    return render(request, 'employees/interns.html', {'employees':employees})
 
 def add_employee(request):
     if request.method == 'POST':
