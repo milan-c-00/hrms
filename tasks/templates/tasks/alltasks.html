@@ -1,0 +1,59 @@
+<!-- templates/tasks/categorized_tasks.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categorized Tasks</title>
+</head>
+<body>
+    <h2>To Do Tasks</h2>
+    <ul>
+        {% for task in to_do_tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> - {{ task.importance }}
+                <br>
+                Assigned to: {{ task.employee }}
+                <br>
+                Start Date: {{ task.start|date:"d/m/Y" }}
+                <br>
+                End Date: {{ task.end|date:"d/m/Y" }}
+            </li>
+        {% empty %}
+            <li>No tasks to do.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>In Progress Tasks</h2>
+    <ul>
+        {% for task in in_progress_tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> - {{ task.importance }}
+                <br>
+                Assigned to: {{ task.employee }}
+                <br>
+                Start Date: {{ task.start|date:"d/m/Y" }}
+                <br>
+                End Date: {{ task.end|date:"d/m/Y" }}
+            </li>
+        {% empty %}
+            <li>No tasks in progress.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Completed Tasks</h2>
+    <ul>
+        {% for task in completed_tasks %}
+            <li>
+                <strong>{{ task.title }}</strong> - {{ task.importance }}
+                <br>
+                Assigned to: {{ task.employee }}
+                <br>
+                Start Date: {{ task.start|date:"d/m/Y" }}
+                <br>
+                End Date: {{ task.end|date:"d/m/Y" }}
+            </li>
+        {% empty %}
+            <li>No completed tasks.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

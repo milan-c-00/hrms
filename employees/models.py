@@ -35,8 +35,9 @@ class Employee(models.Model):
     date1=models.DateTimeField()
     other_bonuses=models.CharField(max_length=50)
     date2=models.DateTimeField()
-
     
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"    
 
 
     

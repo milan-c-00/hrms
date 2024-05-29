@@ -21,9 +21,11 @@ from django.conf.urls.static import static
 import employees.views
 from django.conf.urls import include
 import empPerformance.views
+import tasks.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('employees/',include('employees.urls')),
     path('performance/',include('empPerformance.urls')),
+    path('tasks/',include('tasks.urls')),
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

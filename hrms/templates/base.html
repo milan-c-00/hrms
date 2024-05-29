@@ -223,7 +223,9 @@
           <div class="content">
 
             <div class="header">
+              {% block header %}
               <h1>Employees</h1>
+              {% endblock %}
               <form action="/search" method="GET" class="search-form">
                 <input type="search" name="q" class="search-input" placeholder="Search">
 

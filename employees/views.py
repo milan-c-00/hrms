@@ -31,8 +31,8 @@ def jobobjective(request, employee_id):
     return render(request,'employees/jobobjective.html',{'employee':employee})
 
 def documents(request, employee_id):
-  #  documents=get_object_or_404(Employee, pk=employee_id)
-    return render(request,'employees/documents.html')
+    employee=get_object_or_404(Employee, pk=employee_id)
+    return render(request,'employees/documents.html',{'employee':employee})
 
 def status(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
