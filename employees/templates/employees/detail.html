@@ -1,295 +1,42 @@
-<!doctype html>
-<html>
-<head>
-    
-  {%load static%}
-  
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-
-  
-  <style type="text/css">
-    html {
-          background-color: #FCFBFB;
-        }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-      }
-
-      .header h1 {
-        font-family: 'Poppins', sans-serif;
-        font-weight: 600;
-        font-size: 30px;
-        line-height: 50px;
-        color: #1B1534;
-      }
-
-      .search-form {
-        display: flex;
-      }
-
-      .search-input {
-        width: 500px;
-        height: 30px;
-        padding: 10px;
-        border: none;
-        outline: none;
-      }
-
-      .notification-button {
-        width: 30px;
-        height: 30px;
-        background: #FFFFFF;
-        border: 2px;
-        margin-left: 20px;
-      }
-
-      .header1 a {
-        font-family: 'Roboto', sans-serif;
-        font-size: 15px;
-        font-weight: 500;
-        line-height: 22.5px;
-        text-align: center;
-        color: #8D8D8D;
-        text-decoration: none;
-        margin-left: 23px;
-        margin-top: 40px;
-        margin-right: 20px;
-      }
-
-      .header1 a:last-child {
-        margin-right: 0;
-      }
-
-      .header1 a.active {
-        font-family: 'Roboto', sans-serif;
-        font-size: 20px;
-        font-weight: 600;
-        line-height: 30px;
-        text-align: center;
-        color: #1B1534;
-      }
-
-      .horizontal-line {
-        border: none;
-        border-top: 1px solid #8D8D8D1A;
-        margin-top: 25px;
-        margin-left: 23px;
-        margin-right: 17px;
-        margin-bottom: 40px;
-      }
-
-      .container {
-        display:flex;
-      }
-      
-      .image {
-        position:relative;
-        height:150px;
-        width: 150px;
-        background-color: #d1fae5;
-        padding: 3px;
-        margin-bottom: 10px;
-        
-      }
-      .image .profile-img{
-        height: 100%;
-        width: 100%;
-        object-fit:cover;
-        border-radius: 50%;
-        border: 3px solid #FFFFFF;
-        background-color: #d1fae5;
-
-      
-      }
-      .employee-card{
-        display: flex;
-        flex-direction: column;
-        align-items: left;
- 
-        
-        border-radius: 24px;
-        padding: 25px;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        width: 200px;
-        height: 330px;
- 
-        border-radius: 5px 0px 0px 0px;
-        background-color: #d1fae5;
-
-
-
-
-      }
-
-      .employee-card .text-data{
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        background-color: #d1fae5;
-        
-      }
-      .text-data .name {
-        font-family: Roboto;
-        font-size: 35px;
-        font-weight: 700;
-        line-height: 43.75px;
-        text-align: center;
-        background-color: #d1fae5;
-
-
-        
-
-      }
-
-      .text-data .job {
-        font-family: Roboto;
-        font-size: 22px;
-        font-weight: 700;
-        line-height: 27.5px;
-        text-align: center;
-        background-color: #d1fae5;
-
-
-
-
-
-      }
-
-      .text-data .job .edit{
-          background-color: #FFFFFF;
-          border: none;
-          color: black;
-          padding: 5px 10px;
-          text-align: right;
-          text-decoration: none;
-          display: inline-block;
-          font-size: 16px;
-          margin: 4px 2px;
-          cursor: pointer;
-          border-radius: 4px;
-          transition-duration: 0.4s;
-          font-family: Roboto;
-          
-        }
-
-        .text-data .job .edit:hover {
-            background-color: #45a049; /* Darker Green */
-          }
-        .box .navbar {
-          background: #FCFBFB;
-          padding-right: 15px;
-          padding-left:15px;
-
-        }
-
-
-        .box .navbar .navdiv {
-          display: flex;
-          align-items: center;
-
-        }
-
-        .box .navbar .navdiv .item {
-          list-style: none;
-          display: inline-block;
-        }
-        .box .navbar .navdiv .item a{
-          color:#8D8D8D;
-          font-size:18px;
-          margin-right: 25px;
-          font-family: Roboto;
-
-        }
-
-        .box .navbar .navdiv .item a .active{
-          color:black;
-          font-size:18px;
-          margin-right: 25px;
-          font-family: Roboto;
-
-        }
-        .box, .employee-card {
-          margin-right: 10px;
-        }
-        
-
-
-  </style>
-</head>
-
-<body>
-  <div class="header">
-    <h1>Personal Details</h1>
-    <!-- Search Form -->
-    <form action="/search" method="GET" class="search-form">
-      <input type="search" name="q" class="search-input" placeholder="Search">
-
-      <button type="button" onclick="myFunction()" class="notification-button">
-        <img src="{% static 'notification.png' %}" class="d-inline-block align-top" alt="Notification" />
-      </button>
-
-    </form>
-  </div>
-
-
-  <div class="header1">
-    <a class="active" >Overview</a>
-   
-</div>
-
-<hr class="horizontal-line">
-<div class="container">
-  <div class="employee-card">
-  
-    <div class="image">
-{#      <img src="{{employee.image.url}}" class="profile-img"/>#}
-      <div class="text-data">
-        <span class="name">
-          {{employee.first_name}}
-          {{employee.last_name}}
-        </span>
-        <span class="job">
-          {{employee.title}}
-          <button class="edit">Edit</button>
-        </span>
-      </div>
-  </div>
-
-
-</div>
-<div class="box">
-  <nav class="navbar">
-    <div class="navdiv">
-      <ul>
-        <li class="item"><a href="#">Resume</a></li>
-        <li class="item"><a href="#">Documents</a></li>
-        <li class="item"><a href="#">Status</a></li>
-        <li class="item"><a href="#">Job Details</a></li>
-        <li class="item"><a href="#">Performance</a></li>
-        <li class="item"><a href="#">Days Off</a></li>
-      </ul>
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'employees/css/employees.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="heading-container">
+        <h1 class="employees-heading">Profile details</h1>
+        <form action="{% url 'allemployees' %}" class="employees-search-form" method="GET">
+            <input type="text" class="employees-search-input" name="term" placeholder="Search">
+        </form>
     </div>
-  </nav>
-
-</div>
-</div>
-<script>
-$('.box .navbar .navdiv .item a').click(function() {
-    $('.box .navbar .navdiv .item a').removeClass('active'); // Uklanja klasu 'active' iz svih '.sidebar a' elemenata
-    $(this).addClass('active'); // Dodaje klasu 'active' samo kliknutom '.sidebar a' elementu
-});
-</script>
-
-
-
-</body>
-</html>
+    <div class="employees-navbar">
+        <div class="employees-links">
+            <h3 class="active-line"><a href="{% url 'detail' employee.id %}" class="active">Overview</a></h3>
+            <h3><a href="">{% if employee.employee_contract.internship %}Intern{% else %}Employee{% endif %}</a></h3>
+        </div>
+        <div>
+{#            <input type="button" class="employees-filter" value="Filter">#}
+{#            <a href="{% url 'add_employee' %}" class="employees-add">Add +</a>#}
+        </div>
+    </div>
+    <div class="profile-container">
+        <div class="profile-image-container">
+            {% if employee.image %}
+                <img src="{{ employee.image.url }}" alt="Employee image" class="profile-image">
+            {% else %}
+                <img src="{% static 'images/icon-avatar.svg' %}" alt="Avatar" class="profile-image">
+            {% endif %}
+            <div class="profile-image-text">
+                <h2>{{ employee.name }}</h2>
+                {% if employee.employee_education.degree %}<p>{{ employee.employee_education.degree }}</p>{% endif %}
+                <h3>{{ employee.position }}</h3>
+            </div>
+        </div>
+        <div class="profile-content">
+            {% block profile-content %}
+            	
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

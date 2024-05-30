@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
+
+from documents.models import Document
 from .models import Employee, Contract, Education, WorkExperience
 
 
@@ -20,7 +22,7 @@ def all_performance(request):
 
 def interns(request):
     if 'term' in request.GET:
-        employees = Employee.objects.filter(name__icontains=request.GET.get('term'))
+        employees = Employee.objects.filter(name__icontains=request.GET.get('term')).filter(contract__internship=True).distinct()
         return render(request, 'employees/interns.html', {'employees': employees})
     employees = Employee.objects.filter(contract__internship=True).distinct()
     return render(request, 'employees/interns.html', {'employees':employees})
@@ -134,7 +136,7 @@ def delete_employee(request, employee_id):
 
 def detail(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
-    return render(request,'employees/detail.html',{'employee':employee})
+    return render(request,'employees/personal.html',{'employee':employee})
 
 def personal(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
@@ -144,28 +146,33 @@ def education(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/education.html',{'employee':employee})
 
+def work_experience(request, employee_id):
+    employee=get_object_or_404(Employee, pk=employee_id)
+    return render(request,'employees/work_experience.html', {'employee':employee})
+
 def jobobjective(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/jobobjective.html',{'employee':employee})
 
 def documents(request, employee_id):
-  #  documents=get_object_or_404(Employee, pk=employee_id)
-    return render(request,'employees/documents.html')
+    employee=get_object_or_404(Employee, pk=employee_id)
+    documents = Document.objects.filter(employee=employee)
+    return render(request,'employees/documents.html', {'employee':employee, 'documents':documents})
 
 def status(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/status.html',{'employee':employee})
 
 def jobdetails(request, employee_id):
-  #  documents=get_object_or_404(Employee, pk=employee_id)
-    return render(request,'employees/jobdetails.html')
+    employee=get_object_or_404(Employee, pk=employee_id)
+    return render(request,'employees/jobdetails.html', {'employee':employee})
 
 def performance(request, employee_id):
-  #  documents=get_object_or_404(Employee, pk=employee_id)
-    return render(request,'employees/performance.html')
+    employee=get_object_or_404(Employee, pk=employee_id)
+    return render(request,'employees/performance.html', {'employee':employee})
 
 def daysoff(request, employee_id):
-  #  documents=get_object_or_404(Employee, pk=employee_id)
-    return render(request,'employees/daysoff.html')
+    employee=get_object_or_404(Employee, pk=employee_id)
+    return render(request,'employees/daysoff.html', {'employee':employee})
 
 

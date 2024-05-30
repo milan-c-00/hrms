@@ -62,7 +62,7 @@ ROOT_URLCONF = 'hrms.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['hrms/templates', 'templates'],
+        'DIRS': ['hrms/templates', 'templates', 'employees/templates/employees'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

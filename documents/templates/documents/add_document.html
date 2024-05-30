@@ -28,7 +28,7 @@
                 <select name="employee" id="employee" class="add-document-input">
                     <option value="">Choose</option>
                     {% for employee in employees %}
-                        <option value="{{ employee.id }}" {% if employee.id == form_data.employee  %} selected {% endif %}>{{ employee.first_name }} {{ employee.last_name }}</option>
+                        <option value="{{ employee.id }}" {% if employee.id == form_data.employee  %} selected {% endif %}>{{ employee.name }}</option>
                     {% endfor %}
                 </select>
                 <br>

@@ -135,7 +135,7 @@
     align-items: center;
     margin: 0 1.5%;
     background-color: #FCFBFB;
-    border-bottom: 1px solid #8D8D8D;
+    border-bottom: 1px solid #8D8D8D80;
 }
 
 .employees-navbar h3 {
@@ -301,4 +301,131 @@ h3 a.active {
     font-weight: 600;
     color: #1B1534;
     margin-top: 0.6em;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 97%;
+    margin: 1.5%;
+}
+
+.profile-image-container {
+    width: 30%;
+    max-width: 30%;
+    background-color: #FFFFFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    border-radius: 0.5vw;
+}
+
+.profile-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+}
+
+.profile-image-text{
+    padding-left: 1vw;
+}
+.profile-image-text h2 {
+    font-family: roboto, sans-serif;
+    font-size: 2vw;
+    font-weight: 700;
+}
+.profile-image-text p {
+    display: inline;
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    color: #FFFFFF;
+    background-color: #2FAC67;
+    border-radius: 0.5vw;
+    padding: 0.8em;
+}
+.profile-image-text h3 {
+    font-family: roboto, sans-serif;
+    font-size: 1.3vw;
+}
+
+.profile-content {
+    height: 300px;
+    width: 65%;
+}
+
+.profile-content-main {
+    background-color: #FFFFFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    border-radius: 0.5vw;
+    max-width: 97%;
+    margin: 1.5%;
+    padding: 5%;
+}
+
+.resume-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    padding-bottom: 1vw;
+    border-bottom: 1px solid #8C8A8A80;
+}
+
+.resume-nav-link {
+    font-family: roboto, sans-serif;
+    font-size: 0.8vw;
+    font-weight: 600;
+    color: #2FAC67;
+    padding: 1em 1.5em;
+    border: none;
+    text-decoration: none;
+    border-radius: 0.5vw;
+    background-color: #EFFFF6;
+}
+
+.resume-nav-active {
+    background-color: #2FAC67;
+    color: #FFFFFF;
+}
+
+.resume-personal p {
+    font-family: roboto, sans-serif;
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+.education-heading {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 0;
+}
+
+.education-heading h2 {
+    font-family: roboto, sans-serif;
+    font-size: 1.5vw;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.education-heading p,
+.education-heading + p {
+    font-family: roboto, sans-serif;
+    font-size: 0.8vw;
+    color: #8C8A8A;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+.education-details {
+    font-family: roboto, sans-serif;
+    font-size: 1.3vw;
+    color: #8D8D8D;
+    text-align: justify;
+}
+
+#employee-document-card {
+    width: 45%;
+    max-width: 45%;
 }

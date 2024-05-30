@@ -1,1 +1,20 @@
-oicnnc
+{% extends 'employees/detail.html' %}
+{% load static %}
+{% block profile-content %}
+    <div class="employees-navbar">
+        <div class="employees-links">
+            <h3><a href="{% url 'personal' employee.id %}">Resume</a></h3>
+            <h3><a href="{% url 'documents' employee.id %}">Documents</a></h3>
+            <h3><a href="{% url 'status' employee.id %}">Status</a></h3>
+            <h3 class="active-line"><a href="{% url 'jobdetails' employee.id %}" class="active">Job Details</a></h3>
+            <h3><a href="{% url 'performance' employee.id %}">Performance</a></h3>
+            <h3><a href="{% url 'daysoff' employee.id %}">Days Off</a></h3>
+        </div>
+        <div>
+        </div>
+    </div>
+    <div class="profile-content-main">
+
+
+    </div>
+{% endblock %}

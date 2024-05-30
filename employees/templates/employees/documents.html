@@ -1,1 +1,51 @@
-caooaoa
+{% extends 'employees/detail.html' %}
+{% load static %}
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'documents/css/documents.css' %}">
+{% endblock %}
+{% block profile-content %}
+    <div class="employees-navbar">
+        <div class="employees-links">
+            <h3><a href="{% url 'personal' employee.id %}">Resume</a></h3>
+            <h3 class="active-line"><a href="{% url 'documents' employee.id %}" class="active">Documents</a></h3>
+            <h3><a href="{% url 'status' employee.id %}">Status</a></h3>
+            <h3><a href="{% url 'jobdetails' employee.id %}">Job Details</a></h3>
+            <h3><a href="{% url 'performance' employee.id %}">Performance</a></h3>
+            <h3><a href="{% url 'daysoff' employee.id %}">Days Off</a></h3>
+        </div>
+        <div>
+        </div>
+    </div>
+    <div class="profile-content-main">
+        <div class="documents-container">
+        {% for document in documents.all %}
+            <div id="employee-document-card" class="{% if document.doc_type == 'pdf' %}
+                            document-card document-card-pdf
+                        {% elif document.doc_type == 'xls' or document.doc_type == 'xlsx' %}
+                            document-card document-card-excel
+                        {% elif document.doc_type == 'doc' or document.doc_type == 'docx' %}
+                            document-card document-card-word
+                        {% else %}
+                            document-card
+                        {% endif %} ">
+                <h3 class="document-card-title">{{ document.title }}</h3>
+                <p class="document-card-timestamp">Last updated: {{ document.updated_at|date:'d. F Y.' }}</p>
+
+                <div class="document-card-bottom">
+                    <p class="document-card-timestamp document-card-black">{{ document.file_size_mb.size}} {{ document.file_size_mb.unit }} | {{ document.doc_type.upper }}</p>
+                    <a href="{{ document.file.url }}" download>
+                        {% if document.doc_type == 'xls' or document.doc_type == 'xlsx' %}
+                            <img src="{% static 'download2.png' %}" alt="download icon" class="download-icon">
+                        {% else %}
+                            <img src="{% static 'download.png' %}" alt="download icon" class="download-icon">
+                        {% endif %}
+
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+
+    </div>
+{% endblock %}
