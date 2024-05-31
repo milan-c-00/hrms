@@ -13,23 +13,22 @@
         </div>
     </div>
     <div class="profile-content-main">
-        <div class="resume-nav">
-            <a href="{% url 'personal' employee.id %}" class="resume-nav-link resume-nav-active">Personal Information</a>
-            <a href="{% url 'education' employee.id %}" class="resume-nav-link">Educational Background</a>
-            <a href="{% url 'work_experience' employee.id %}" class="resume-nav-link">Work Experience</a>
-        </div>
         <div class="resume-personal">
-                <p>Personal information</p>
+                <p>Status</p>
                 <div class="add-employee-row">
                     <div>
-                        <label for="name" class="add-employee-label">Name</label>
+                        <label for="status" class="add-employee-label">Status</label>
                         <br>
-                        <input id="name" type="text" name="name" placeholder="Type here" class="add-employee-input" required value="{{ employee.name }}">
+                        <input id="status" type="text" name="status" placeholder="Type here" class="add-employee-input" value="{{ employee.status }}">
                     </div>
                     <div>
-                        <label for="birth_date" class="add-employee-label">Birth date</label>
+                        <label for="internship" class="add-employee-label">Internship</label>
                         <br>
-                        <input id="birth_date" type="date" name="birth_date" placeholder="Choose" class="add-employee-input" required value="{{ employee.birth_date|date:'Y-m-d' }}">
+{#                        <input id="internship" type="text" name="internship" placeholder="Type here" class="add-employee-input">#}
+                        <select name="internship" id="internship" class="add-employee-input">
+                            <option value="1" {% if employee.employee_contract.internship == True  %} selected {% endif %}>Yes</option>
+                            <option value="0" {% if employee.employee_contract.internship == False  %} selected {% endif %}>No</option>
+                        </select>
                     </div>
                 </div>
                 <div class="add-employee-row">
@@ -51,31 +50,26 @@
                         </select>
                     </div>
                 </div>
-                <p>Contact details</p>
+                <p>Contract</p>
                 <div class="add-employee-row">
                     <div>
-                        <label for="personal_email" class="add-employee-label">Personal email</label>
+                        <label for="contract_start_date" class="add-employee-label">Start date</label>
                         <br>
-                        <input id="personal_email" type="email" name="personal_email" placeholder="Type here" class="add-employee-input" value="{{ employee.personal_email }}">
+                        <input id="contract_start_date" type="date" name="contract_start_date" placeholder="Type here" class="add-employee-input" value="{{ employee.employee_contract.start_date|date:'Y-m-d' }}">
                     </div>
                     <div>
-                        <label for="professional_email" class="add-employee-label">Professional email</label>
+                        <label for="contract_end_date" class="add-employee-label">End date</label>
                         <br>
-                        <input id="professional_email" type="email" name="professional_email" placeholder="Type here" class="add-employee-input" value="{{ employee.professional_email }}">
+                        <input id="contract_end_date" type="date" name="contract_end_date" placeholder="Type here" class="add-employee-input" value="{{ employee.employee_contract.end_date|date:'Y-m-d' }}">
                     </div>
                 </div>
+                <p>Budget</p>
                 <div class="add-employee-row">
-                    <div>
-                        <label for="address" class="add-employee-label">Address</label>
+                    <div id="salary-div">
+                        <label for="salary" class="add-employee-label">Salary</label>
                         <br>
-                        <input id="address" type="text" name="address" placeholder="Type here" class="add-employee-input" value="{{ employee.address }}">
+                        <input id="salary" type="number" name="salary" placeholder="Type here" class="add-employee-input" value="{{ employee.employee_contract.salary }}">
                     </div>
-                    <div>
-                        <label for="phone" class="add-employee-label">Phone</label>
-                        <br>
-                        <input id="phone" type="tel" name="phone" placeholder="Type here" class="add-employee-input" required value="{{ employee.phone }}">
-                    </div>
-
                 </div>
         </div>
     </div>

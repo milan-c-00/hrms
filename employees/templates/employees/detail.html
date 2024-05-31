@@ -23,7 +23,9 @@
     <div class="profile-container">
         <div class="profile-image-container">
             {% if employee.image %}
-                <img src="{{ employee.image.url }}" alt="Employee image" class="profile-image">
+                <div class="image-container">
+                    <img src="{{ employee.image.url }}" alt="Employee image" class="profile-image">
+                </div>
             {% else %}
                 <img src="{% static 'images/icon-avatar.svg' %}" alt="Avatar" class="profile-image">
             {% endif %}

@@ -91,8 +91,14 @@
             <tbody class="employees-table-body">
                 {% for employee in employees.all %}
                     <tr>
-                        <td class="centered">{% if employee.image %}<img src="{{ employee.image.url }}" alt="Employee image" class="employee-img-small">{% endif %}</td>
-                        <td>{{ employee.name }}</td>
+                        <td class="centered">{% if employee.image %}
+                            <a href="{% url 'personal' employee.id %}">
+                                <div class="image-container">
+                                    <img id="employee-img-small" src="{{ employee.image.url }}" alt="Employee image" class="employee-img-small">
+                                </div>
+                            </a>{% endif %}
+                        </td>
+                        <td><a href="{% url 'personal' employee.id %}" style="text-decoration: none; color: black">{{ employee.name }}</a></td>
                         <td>{{ employee.team }}</td>
                         <td>/</td>
                         <td>/</td>
@@ -105,6 +111,7 @@
                             </div>
                         </td>
                     </tr>
+
                 {% endfor %}
             </tbody>
         </table>

@@ -129,10 +129,10 @@ def add_employee(request):
 
 def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
-    if request.method == 'POST':
-        employee.delete()
-        return redirect('/employees/')  
-    return render(request, {'employee': employee})
+
+    employee.delete()
+    return redirect('/employees/')
+    # return render(request, {'employee': employee})
 
 def detail(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
