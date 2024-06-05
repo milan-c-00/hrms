@@ -38,7 +38,13 @@
             <tbody class="employees-table-body">
                 {% for employee in employees.all %}
                     <tr>
-                        <td class="centered">{% if employee.image %}<img src="{{ employee.image.url }}" alt="Employee image" class="employee-img-small">{% endif %}</td>
+                        <td class="centered">{% if employee.image %}
+                            <a href="{% url 'personal' employee.id %}">
+                                <div class="image-container">
+                                    <img id="employee-img-small" src="{{ employee.image.url }}" alt="Employee image" class="employee-img-small">
+                                </div>
+                            </a>{% endif %}
+                        </td>
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.team }}</td>
                         <td>/</td>

@@ -61,6 +61,15 @@ class Employee(models.Model):
     def employee_work_experience(self):
         return self.workexperience_set.first()
 
+    def soft_skills(self):
+        return self.skill_set.filter(skill_type='soft')
+
+    def software_skills(self):
+        return self.skill_set.filter(skill_type='software')
+
+    def notes(self):
+        return self.note_set
+
 
 class Education(models.Model):
     school = models.CharField(max_length=255, null=True, blank=True)
@@ -93,4 +102,16 @@ class Contract(models.Model):
     employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
 
 
-    
+class Skill(models.Model):
+    name = models.CharField(max_length=255)
+    skill_type = models.CharField(max_length=255)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+
+class Note(models.Model):
+    note = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['-created_at']

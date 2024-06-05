@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 
 from documents.models import Document
-from .models import Employee, Contract, Education, WorkExperience
+from .models import Employee, Contract, Education, WorkExperience, Skill, Note
 
 
 def allemployees(request):
@@ -176,3 +176,22 @@ def daysoff(request, employee_id):
     return render(request,'employees/daysoff.html', {'employee':employee})
 
 
+def add_skill(request, employee_id):
+    if request.method == 'POST':
+        employee = get_object_or_404(Employee, id=employee_id)
+        name = request.POST.get('name')
+        skill_type = request.POST.get('skill_type')
+        skill = Skill.objects.create(employee=employee, name=name, skill_type=skill_type)
+        skill.save()
+        return redirect('performance', employee_id)
+    return render(request, 'employees/performance.html')
+
+
+def add_note(request, employee_id):
+    if request.method == 'POST':
+        employee = get_object_or_404(Employee, id=employee_id)
+        note = request.POST.get('note')
+        new_note = Note.objects.create(employee=employee, note=note)
+        new_note.save()
+        return redirect('performance', employee_id)
+    return render(request, 'employees/performance.html')

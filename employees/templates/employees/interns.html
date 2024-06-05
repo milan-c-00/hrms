@@ -27,10 +27,10 @@
         <div class="statistics-card">
             <img src="{% static 'employees/images/icon-people.svg' %}" alt="people icon">
             <div>
-                <h2>100</h2>
+                <h2>{{ employees.count }}</h2>
                 <p class="statistics-card-detail">Total Interns</p>
                 <p class="statistics-card-detail-green">Departments</p>
-                <p class="statistics-card-detail-black">7</p>
+                <p class="statistics-card-detail-black">5</p>
             </div>
         </div>
         <div class="statistics-card">
@@ -87,7 +87,13 @@
             <tbody class="employees-table-body">
                 {% for employee in employees.all %}
                     <tr>
-                        <td class="centered">{% if employee.image %}<img src="{{ employee.image.url }}" alt="Employee image" class="employee-img-small">{% endif %}</td>
+                        <td class="centered">{% if employee.image %}
+                            <a href="{% url 'personal' employee.id %}">
+                                <div class="image-container">
+                                    <img id="employee-img-small" src="{{ employee.image.url }}" alt="Employee image" class="employee-img-small">
+                                </div>
+                            </a>{% endif %}
+                        </td>
                         <td>{{ employee.name }}</td>
                         <td>{{ employee.team }}</td>
                         <td>/</td>
