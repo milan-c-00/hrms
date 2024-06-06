@@ -18,7 +18,7 @@
             <div class="employee-skills" id="employee-skills">
                 <div class="education-heading">
                     <h2>Skills</h2>
-                    <p><label for="add-skill-btn">Add +</label></p>
+                    <p><label for="add-skill-btn" class="hover">Add +</label></p>
                     <button id="add-skill-btn" hidden="hidden" onclick="toggleForm('skills')"></button>
                 </div>
                 <div class="between">
@@ -67,8 +67,8 @@
                     </div>
                     <div class="add-employee-row">
                         <div>
-                            <input type="submit" class="add-employee-btn" value="Save">
-                            <input type="reset" class="resume-nav-link" value="Cancel" onclick="toggleForm('skills')">
+                            <input type="submit" class="add-employee-btn hover" value="Save">
+                            <input type="reset" class="resume-nav-link hover" value="Cancel" onclick="toggleForm('skills')">
                         </div>
                     </div>
                 </form>
@@ -76,14 +76,14 @@
             <div class="employee-notes" id="employee-notes">
                 <div class="education-heading">
                     <h2>Notes</h2>
-                    <p><label for="add-note-btn">Add +</label></p>
+                    <p><label for="add-note-btn" class="hover">Add +</label></p>
                     <button id="add-note-btn" hidden="hidden" onclick="toggleForm('notes')"></button>
                 </div>
                 <div class="notes-container">
                     {% for note in employee.notes.all %}
                     	<div class="employee-note">
                             <h3>{{ note.note }}</h3>
-                            <p>{{ note.created_at|date:'d/m/Y' }}</p>
+                            <p>{{ note.created_at|date:'d/m/Y' }}<a href="{% url 'delete_note' employee_id=employee.id note_id=note.id %}" class="delete-note">Delete</a></p>
                         </div>
                     {% endfor %}
 
@@ -102,8 +102,8 @@
                     <br>
 
                     <div>
-                        <input type="submit" class="add-employee-btn" value="Save">
-                        <input type="reset" class="resume-nav-link" value="Cancel" onclick="toggleForm('notes')">
+                        <input type="submit" class="add-employee-btn hover" value="Save">
+                        <input type="reset" class="resume-nav-link hover" value="Cancel" onclick="toggleForm('notes')">
                     </div>
 
                 </form>

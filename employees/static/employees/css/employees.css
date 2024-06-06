@@ -476,6 +476,7 @@ h3 a.active {
     background-color: #FFFFFF;
     box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
     padding: 1vw;
+    border-radius: 0.5vw;
 }
 
 .employee-notes {
@@ -484,6 +485,7 @@ h3 a.active {
     background-color: #FFFFFF;
     box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
     padding: 1vw;
+    border-radius: 0.5vw;
 }
 
 .w-50 {
@@ -551,10 +553,18 @@ h3 a.active {
 .employee-note:nth-of-type(3n) {
     background-color: #EEFEF5;
     color: #1B1534;
+    .delete-note {
+        color: #1B1534;
+    }
 }
 
-.employee-note h3, .employee-note p {
+.employee-note h3 {
     margin: 0.5em 0;
+    font-size: 1.2vw;
+}
+.employee-note p {
+    margin: 0.5em 0;
+    font-size: 0.8vw;
 }
 
 .notes-container {
@@ -568,4 +578,16 @@ h3 a.active {
 
 ::-webkit-scrollbar {
     display: none;
+}
+
+.hover:hover {
+    cursor: pointer;
+}
+
+.delete-note {
+    text-decoration: none;
+    font-size: 1em;
+    color: #FFFFFF;
+    margin-left: auto;
+    float: right;
 }

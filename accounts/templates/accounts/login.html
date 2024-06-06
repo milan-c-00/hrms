@@ -22,6 +22,7 @@
         <div class="login-form">
             <form method="POST" action="{% url 'login' %}">
                 {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}">
                 <h2 class="login-text-black">Sign In</h2>
                 <label for="username" class="login-labels">Username</label>
                 <br/>

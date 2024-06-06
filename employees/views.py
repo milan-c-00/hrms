@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -6,6 +7,7 @@ from documents.models import Document
 from .models import Employee, Contract, Education, WorkExperience, Skill, Note
 
 
+@login_required(login_url='login')
 def allemployees(request):
     if 'term' in request.GET:
         employees = Employee.objects.filter(name__icontains=request.GET.get('term'))
@@ -13,6 +15,8 @@ def allemployees(request):
     employees=Employee.objects
     return render(request,'employees/allemployees.html',{'employees':employees})
 
+
+@login_required(login_url='login')
 def all_performance(request):
     if 'term' in request.GET:
         employees = Employee.objects.filter(name__icontains=request.GET.get('term'))
@@ -20,6 +24,8 @@ def all_performance(request):
     employees=Employee.objects
     return render(request, 'employees/all_performance.html', {'employees':employees})
 
+
+@login_required(login_url='login')
 def interns(request):
     if 'term' in request.GET:
         employees = Employee.objects.filter(name__icontains=request.GET.get('term')).filter(contract__internship=True).distinct()
@@ -27,6 +33,8 @@ def interns(request):
     employees = Employee.objects.filter(contract__internship=True).distinct()
     return render(request, 'employees/interns.html', {'employees':employees})
 
+
+@login_required(login_url='login')
 def add_employee(request):
     if request.method == 'POST':
         if request.POST['name'] and request.POST['birth_date'] and request.POST['position'] and request.POST['team']and request.POST['phone']:
@@ -127,6 +135,8 @@ def add_employee(request):
 
     return render(request, 'employees/add_employee.html')
 
+
+@login_required(login_url='login')
 def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
 
@@ -134,48 +144,69 @@ def delete_employee(request, employee_id):
     return redirect('/employees/')
     # return render(request, {'employee': employee})
 
+
+@login_required(login_url='login')
 def detail(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/personal.html',{'employee':employee})
 
+
+@login_required(login_url='login')
 def personal(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/personal.html',{'employee':employee})
 
+
+@login_required(login_url='login')
 def education(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/education.html',{'employee':employee})
 
+
+@login_required(login_url='login')
 def work_experience(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/work_experience.html', {'employee':employee})
 
+
+@login_required(login_url='login')
 def jobobjective(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/jobobjective.html',{'employee':employee})
 
+
+@login_required(login_url='login')
 def documents(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     documents = Document.objects.filter(employee=employee)
     return render(request,'employees/documents.html', {'employee':employee, 'documents':documents})
 
+
+@login_required(login_url='login')
 def status(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/status.html',{'employee':employee})
 
+
+@login_required(login_url='login')
 def jobdetails(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/jobdetails.html', {'employee':employee})
 
+
+@login_required(login_url='login')
 def performance(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/performance.html', {'employee':employee})
 
+
+@login_required(login_url='login')
 def daysoff(request, employee_id):
     employee=get_object_or_404(Employee, pk=employee_id)
     return render(request,'employees/daysoff.html', {'employee':employee})
 
 
+@login_required(login_url='login')
 def add_skill(request, employee_id):
     if request.method == 'POST':
         employee = get_object_or_404(Employee, id=employee_id)
@@ -187,6 +218,7 @@ def add_skill(request, employee_id):
     return render(request, 'employees/performance.html')
 
 
+@login_required(login_url='login')
 def add_note(request, employee_id):
     if request.method == 'POST':
         employee = get_object_or_404(Employee, id=employee_id)
@@ -195,3 +227,10 @@ def add_note(request, employee_id):
         new_note.save()
         return redirect('performance', employee_id)
     return render(request, 'employees/performance.html')
+
+
+@login_required(login_url='login')
+def delete_note(request, employee_id, note_id):
+    note = get_object_or_404(Note, id=note_id)
+    note.delete()
+    return redirect('performance', employee_id)
