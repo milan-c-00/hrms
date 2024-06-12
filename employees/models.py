@@ -115,3 +115,13 @@ class Note(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+
+class FormerEmployee(models.Model):
+    name = models.CharField(max_length=255)
+    archived_date = models.DateField(auto_now_add=True)
+
+
+class JobDetails(models.Model):
+    details = models.TextField(null=True, blank=True)
+    employee = models.OneToOneField(Employee, on_delete=models.CASCADE)

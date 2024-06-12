@@ -4,16 +4,18 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 
 from documents.models import Document
-from .models import Employee, Contract, Education, WorkExperience, Skill, Note
+from .models import Employee, Contract, Education, WorkExperience, Skill, Note, FormerEmployee, JobDetails
 
 
 @login_required(login_url='login')
 def allemployees(request):
+    former_employees = FormerEmployee.objects.count()
+    distinct_teams = Employee.objects.values('team').distinct().count()
     if 'term' in request.GET:
         employees = Employee.objects.filter(name__icontains=request.GET.get('term'))
-        return render(request, 'employees/allemployees.html', {'employees': employees})
+        return render(request, 'employees/allemployees.html', {'employees': employees, 'former_employees': former_employees, 'distinct_teams': distinct_teams})
     employees=Employee.objects
-    return render(request,'employees/allemployees.html',{'employees':employees})
+    return render(request,'employees/allemployees.html',{'employees':employees, 'former_employees': former_employees, 'distinct_teams': distinct_teams})
 
 
 @login_required(login_url='login')
@@ -27,11 +29,12 @@ def all_performance(request):
 
 @login_required(login_url='login')
 def interns(request):
+    distinct_teams = Employee.objects.filter(contract__internship=True).values('team').distinct().count()
     if 'term' in request.GET:
         employees = Employee.objects.filter(name__icontains=request.GET.get('term')).filter(contract__internship=True).distinct()
-        return render(request, 'employees/interns.html', {'employees': employees})
+        return render(request, 'employees/interns.html', {'employees': employees, 'distinct_teams': distinct_teams})
     employees = Employee.objects.filter(contract__internship=True).distinct()
-    return render(request, 'employees/interns.html', {'employees':employees})
+    return render(request, 'employees/interns.html', {'employees':employees, 'distinct_teams': distinct_teams})
 
 
 @login_required(login_url='login')
@@ -140,6 +143,9 @@ def add_employee(request):
 def delete_employee(request, employee_id):
     employee = get_object_or_404(Employee, pk=employee_id)
 
+    former_employee = FormerEmployee(name=employee.name)
+    former_employee.save()
+
     employee.delete()
     return redirect('/employees/')
     # return render(request, {'employee': employee})
@@ -234,3 +240,16 @@ def delete_note(request, employee_id, note_id):
     note = get_object_or_404(Note, id=note_id)
     note.delete()
     return redirect('performance', employee_id)
+
+
+@login_required(login_url='login')
+def edit_job_details(request, employee_id):
+    employee = get_object_or_404(Employee, id=employee_id)
+    if request.method == 'POST':
+        details = request.POST.get('details')
+        job_details, created = JobDetails.objects.get_or_create(employee=employee)
+        job_details.details = details
+        job_details.save()
+        return redirect('jobdetails', employee_id=employee_id)
+    else:
+        return render(request, 'employees/jobdetails.html', {'employee': employee})

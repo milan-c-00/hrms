@@ -15,6 +15,7 @@ urlpatterns = [
      path('<int:employee_id>/documents', views.documents,name='documents'),
      path('<int:employee_id>/status', views.status,name='status'),
      path('<int:employee_id>/jobdetails', views.jobdetails,name='jobdetails'),
+    path('<int:employee_id>/jobdetails/edit', views.edit_job_details, name='edit_job_details'),
      path('<int:employee_id>/performance', views.performance,name='performance'),
      path('<int:employee_id>/daysoff', views.daysoff,name='daysoff'),
     path('<int:employee_id>/performance/skills/add', views.add_skill, name='add_skill'),

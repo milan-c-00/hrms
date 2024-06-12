@@ -34,7 +34,7 @@
                 <h2>{{ employees.count }}</h2>
                 <p class="statistics-card-detail">Total Employees</p>
                 <p class="statistics-card-detail-green">Departments</p>
-                <p class="statistics-card-detail-black">5</p>
+                <p class="statistics-card-detail-black">{{ distinct_teams }}</p>
             </div>
         </div>
         <div class="statistics-card">
@@ -68,10 +68,10 @@
         <div class="statistics-card">
             <img src="{% static 'employees/images/icon-profile-x.svg' %}" alt="profile icon">
             <div>
-                <h2>100</h2>
+                <h2>{{ former_employees }}</h2>
                 <p class="statistics-card-detail">Former Employee</p>
-                <p  class="statistics-card-detail-dark">/</p>
-                <p class="statistics-card-detail-black">/</p>
+                <p  class="statistics-card-detail-dark">Departments</p>
+                <p class="statistics-card-detail-black">{{ distinct_teams }}</p>
             </div>
         </div>
     </div>

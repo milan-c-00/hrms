@@ -20,8 +20,36 @@
                 <p></p>
             </div>
             <p>{{ employee.position }}</p>
-            <p class="education-details">{{ employee.employee_education.details }}</p>
+            <div id="job_details_container">
+                <p class="education-details">{{ employee.jobdetails.details }}</p>
+                <button class="add-employee-btn" onclick="toggleForm()">Update</button>
+            </div>
+            <form id="job_details_form" action="{% url 'edit_job_details' employee.id %}" method="POST" style="display: none">
+                {% csrf_token %}
+                <div class="add-employee-row">
+                    <div id="salary-div">
+                        <label for="job_details" class="add-employee-label" hidden="hidden"></label>
+                        <br>
+                        <textarea name="details" id="job_details" cols="30" rows="5" class="add-employee-input">{{ employee.jobdetails.details }}</textarea>
+                    </div>
+                </div>
+                <button type="submit" class="add-employee-btn">Save</button>
+                <button type="reset" class="add-employee-btn" onclick="toggleForm()">Cancel</button>
+            </form>
         </div>
 
     </div>
+    <script>
+        function toggleForm(){
+            let jobDetailsForm = document.getElementById('job_details_form');
+            let jobDetailsContainer = document.getElementById('job_details_container');
+            if (jobDetailsForm.style.display === 'none' || jobDetailsForm.style.display === '') {
+                jobDetailsForm.style.display = 'block';
+                jobDetailsContainer.style.display = 'none';
+            } else {
+                jobDetailsForm.style.display = 'none';
+                jobDetailsContainer.style.display = 'block'
+            }
+        }
+    </script>
 {% endblock %}

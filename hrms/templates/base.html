@@ -104,11 +104,11 @@
            <img src="{% static 'Vector.png' %}" class="icon" alt="vector">
             Dashboard
          </a>
-            <a href="{% url 'allemployees' %}" data-default-image="{% static 'Employee Dark-01.png' %}" data-active-image="{% static 'Employee White-01.png' %}" class="icon-link">
+            <a href="{% url 'allemployees' %}" data-default-image="{% static 'Employee Dark-01.png' %}" data-active-image="{% static 'Employee White-01.png' %}" class="icon-link {% if request.path|slice:10 == '/employees'  %}active{% endif %}">
              <img src="{% static 'Employee Dark-01.png' %}" class="icon" alt="employee">
            Employees
          </a>
-           <a href="{% url 'documents' %}" data-default-image="{% static 'Group 1000004815.png' %}" data-active-image="{% static 'Documents White-01.png' %}" class="icon-link {% if documents %}active{% endif %}">
+           <a href="{% url 'documents' %}" data-default-image="{% static 'Group 1000004815.png' %}" data-active-image="{% static 'Documents White-01.png' %}" class="icon-link {% if request.path|slice:10 == '/documents'  %}active{% endif %}">
               <img src="{% static 'Group 1000004815.png' %}" class="icon" alt="docs">
             Documents</a>
            <a href="#" data-default-image="{% static 'Group 1000004819.png' %}" data-active-image="{% static 'Schedule White-01.png' %}" class="icon-link">
