@@ -103,11 +103,15 @@
                         <td>/</td>
                         <td>/</td>
                         <td>{{ employee.employee_contract.salary }}&euro;</td>
-                        <td>
-                            <div class="vertical-dots-menu">
+                        <td style="position: relative">
+                            <div class="vertical-dots-menu" onclick="toggleAction({{ employee.id }})">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
                                 <span class="dot"></span>
+                            </div>
+                            <div id="employee-action{{ employee.id }}" class="employees-action">
+                                <a href="{% url 'delete_employee' employee.id %}" class="delete-employee">Delete</a>
+                                <a href="#" class="delete-employee update-employee">Update</a>
                             </div>
                         </td>
                     </tr>
@@ -116,6 +120,15 @@
             </tbody>
         </table>
     </div>
-
+    <script>
+        function toggleAction(employee_id){
+            let employeeAction = document.getElementById(`employee-action${employee_id}`);
+            if (employeeAction.style.display === 'none' || employeeAction.style.display === '') {
+                employeeAction.style.display = 'flex';
+            } else {
+                employeeAction.style.display = 'none';
+            }
+        }
+    </script>
 
 {%endblock%}

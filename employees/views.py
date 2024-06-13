@@ -13,6 +13,7 @@ def allemployees(request):
     distinct_teams = Employee.objects.values('team').distinct().count()
     if 'term' in request.GET:
         employees = Employee.objects.filter(name__icontains=request.GET.get('term'))
+        distinct_teams = employees.values('team').distinct().count()
         return render(request, 'employees/allemployees.html', {'employees': employees, 'former_employees': former_employees, 'distinct_teams': distinct_teams})
     employees=Employee.objects
     return render(request,'employees/allemployees.html',{'employees':employees, 'former_employees': former_employees, 'distinct_teams': distinct_teams})
@@ -253,3 +254,8 @@ def edit_job_details(request, employee_id):
         return redirect('jobdetails', employee_id=employee_id)
     else:
         return render(request, 'employees/jobdetails.html', {'employee': employee})
+
+
+@login_required(login_url='login')
+def update_employee(request, employee_id):
+    pass

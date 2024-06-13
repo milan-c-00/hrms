@@ -269,16 +269,16 @@ h3 a.active {
     align-items: center;
     justify-content: center;
     height: 3.2vw; /* Adjust height as needed */
-    width: 3.2vw; /* Adjust width as needed */
+    /*width: 3.2vw; !* Adjust width as needed *!*/
     cursor: pointer;
 }
 
 .dot {
-    height: 4px; /* Size of the dot */
-    width: 4px; /* Size of the dot */
+    height: 0.3vw; /* Size of the dot */
+    width: 0.3vw; /* Size of the dot */
     background-color: #2FAC67; /* Color of the dot */
     border-radius: 50%;
-    margin: 2px 0; /* Space between the dots */
+    margin: 0.15vw 0; /* Space between the dots */
 }
 
 .vertical-dots-menu:hover .dot {
@@ -590,4 +590,68 @@ h3 a.active {
     color: #FFFFFF;
     margin-left: auto;
     float: right;
+}
+
+.employees-action {
+    display: none;
+    width: 150%;
+    /*height: 100%;*/
+    background-color: #FCFBFB;
+    border-radius: 0.5vw;
+    box-shadow: rgba(149, 157, 165, 0.5) 0 8px 24px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.employees-action div {
+    font-size: 0.8vw;
+    color: #8D8D8D;
+    float: right;
+    text-align: right;
+    cursor: pointer;
+}
+
+.employees-action::after {
+            content: "";
+            position: absolute;
+            top: 100%; /* Position at the bottom of the popup */
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0.8vw;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent; /* Create the triangle */
+        }
+
+.delete-employee {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    font-weight: 400;
+    text-align: center;
+    width: 80%;
+    margin: 5%;
+    border: 1px solid #DC3545;
+    border-radius: 0.5vw;
+    color: #DC3545;
+    text-decoration: none;
+    padding: 5%;
+}
+
+.delete-employee:hover {
+    background-color: #DC3545;
+    color: #FFFFFF;
+}
+
+.update-employee {
+    border-color: orange;
+    color: orange;
+}
+
+.update-employee:hover {
+    background-color: orange;
+    color: #FFFFFF;
 }

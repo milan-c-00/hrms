@@ -18,6 +18,9 @@
             }
         }
     </script>
+    <div class="heading-container">
+        <h1 class="employees-heading">Add Employee</h1>
+    </div>
 	<div>
         <form action="{% url 'add_employee' %}"  class="add-employee-form" enctype="multipart/form-data" method="POST">
             {% csrf_token %}
