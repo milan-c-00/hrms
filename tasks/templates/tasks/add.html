@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-family: Poppins;
+            font-weight: 600;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-save-create,
+        .btn-save {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: Roboto;
+        }
+
+        .btn-save-create {
+            background-color: #FFFFFF;
+            color: #7d7b7b;
+        }
+
+        .btn-save {
+            background-color: #2FAC67;
+            color: #ffffff;
+        }
+
+        .form-container {
+            display: flex;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-panel {
+            flex: 1;
+            padding: 20px;
+            background-color: #ffffff;
+           
+        }
+
+        .form-panel h2 {
+            margin-top: 0;
+            font-family: Poppins;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: calc(100% - 22px); /* Adjust width to match desired layout */
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Ensures padding and border are included in width calculation */
+            
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+        .error-message {
+            color: red;
+            margin-bottom: 10px;
+            font-family: Roboto;
+        }
+        .client-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        .navbar a {
+            float: left;
+            display: block;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-family: Roboto;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .navbar a.active {
+            border-bottom: 2px solid green;
+        }
+        .navbar {
+            background-color: #f8f8f8;
+            overflow: hidden
+        }
+
+        
+    </style>
+</head>
+<body>
+   
+    <div class="container">
+        
+        <div class="header">
+            <h1>New Task</h1>
+            
+            <div class="buttons">
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-save" id="saveButton" onclick="validateForm()">Save</button>
+                
+            </div>
+        </div>
+
+       
+            
+            {% if form.errors %}
+                <div class="error-message">
+                    <strong>Please fill out all the fields.</strong>
+                    
+                </div>
+            {% endif %}
+            <div class="form-container">
+                <div class="form-panel">
+                    <div class="form-group">
+                        <label for="{{ form.title.id_for_label }}" style="font-family: Roboto; font-weight: 500; color: #8C8A8A;">Task Name</label>
+                        {{ form.title }}
+                        {%for error in form.title.errors%}
+                            {{error}}
+                        {%endfor%}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.status.id_for_label }}" style="font-family: Roboto; font-weight: 500; color: #8C8A8A;">Status</label>
+                        {{ form.status }}
+                        {%for error in form.status.errors%}
+                        {{error}}
+                    {%endfor%}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.start.id_for_label }}" style="font-family: Roboto; font-weight: 500; color: #8C8A8A;">Starting from</label>
+                        {{ form.start }}
+                        {%for error in form.start.errors%}
+                        {{error}}
+                        {%endfor%}
+                    </div>
+                </div>
+    
+                <div class="form-panel">
+                    <div class="form-group">
+                        <label for="{{ form.employee.id_for_label }}" style="font-family: Roboto; font-weight: 500; color: #8C8A8A;">Employee</label>
+                        {{ form.employee }}
+                        {%for error in form.employee.errors%}
+                        {{error}}
+                        {%endfor%}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.importance.id_for_label }}" style="font-family: Roboto; font-weight: 500; color: #8C8A8A;">Importance</label>
+                        {{ form.importance }}
+                        {%for error in form.importance.errors%}
+                        {{error}}
+                        {%endfor%}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.end.id_for_label }}" style="font-family: Roboto; font-weight: 500; color: #8C8A8A;">Ends in</label>
+                        {{ form.end }}
+                        {%for error in form.end.errors%}
+                        {{error}}
+                        {%endfor%}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    
+</body>
+</html>
+{% endblock %}
