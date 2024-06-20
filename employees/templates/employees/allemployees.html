@@ -98,9 +98,17 @@
                                 </div>
                             </a>{% endif %}
                         </td>
-                        <td><a href="{% url 'personal' employee.id %}" style="text-decoration: none; color: black">{{ employee.name }}</a></td>
-                        <td>{{ employee.team }}</td>
-                        <td>/</td>
+                        <td>
+                            <a href="{% url 'personal' employee.id %}" style="text-decoration: none; color: black">{{ employee.name }}</a>
+                            <br>
+                            <span class="add-employee-label">{{ employee.personal_email }}</span>
+                        </td>
+                        <td>
+                            {{ employee.team }}
+                            <br>
+                            <span class="add-employee-label">{{ employee.position }}</span>
+                        </td>
+                        <td>08:00h</td>
                         <td>/</td>
                         <td>{{ employee.employee_contract.salary }}&euro;</td>
                         <td style="position: relative">
@@ -110,8 +118,14 @@
                                 <span class="dot"></span>
                             </div>
                             <div id="employee-action{{ employee.id }}" class="employees-action">
-                                <a href="{% url 'delete_employee' employee.id %}" class="delete-employee">Delete</a>
+{#                                <a href="{% url 'delete_employee' employee.id %}" class="delete-employee">Delete</a>#}
+                                <a class="delete-employee hover" onclick="toggleDialog({{ employee.id }})">Delete</a>
                                 <a href="#" class="delete-employee update-employee">Update</a>
+                            </div>
+                            <div id="employee-dialog{{ employee.id }}" class="employees-action">
+                                <p class="dialog-danger">Are you sure you want do delete {{ employee.name }} from employees?</p>
+                                <a href="{% url 'delete_employee' employee.id %}" class="delete-employee">Delete</a>
+                                <a class="delete-employee update-employee hover" onclick="toggleDialog({{ employee.id }})">Cancel</a>
                             </div>
                         </td>
                     </tr>
@@ -127,6 +141,14 @@
                 employeeAction.style.display = 'flex';
             } else {
                 employeeAction.style.display = 'none';
+            }
+        }
+        function toggleDialog(employee_id) {
+            let employeeDialog = document.getElementById(`employee-dialog${employee_id}`);
+            if (employeeDialog.style.display === 'none' || employeeDialog.style.display === '') {
+                employeeDialog.style.display = 'flex';
+            } else {
+                employeeDialog.style.display = 'none';
             }
         }
     </script>

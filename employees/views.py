@@ -41,7 +41,7 @@ def interns(request):
 @login_required(login_url='login')
 def add_employee(request):
     if request.method == 'POST':
-        if request.POST['name'] and request.POST['birth_date'] and request.POST['position'] and request.POST['team']and request.POST['phone']:
+        if request.POST['name'] and request.POST['birth_date'] and request.POST['position'] and request.POST['team'] and request.POST['phone']:
             name = request.POST.get('name')
             birth_date = request.POST.get('birth_date')
             position = request.POST.get('position')
@@ -72,7 +72,6 @@ def add_employee(request):
             emp_status = request.POST.get('status')
             internship_val = request.POST.get('internship')
             internship = internship_val == '1'
-            print(internship)
             contract_start_date = request.POST.get('contract_start_date')
             contract_end_date = request.POST.get('contract_end_date')
             salary = request.POST.get('salary')
@@ -121,7 +120,7 @@ def add_employee(request):
             work_details = request.POST.get('work_details')
 
             # Create the WorkExperience instance
-            work_experience = WorkExperience(
+            emp_work_experience = WorkExperience(
                 employee=employee,
                 company=company,
                 location=company_location,
@@ -131,8 +130,8 @@ def add_employee(request):
                 end_date=work_end_date if work_end_date else None,
                 details=work_details
             )
-            work_experience.save()
-            return redirect('allemployees')  # Redirect to employee list or some other page
+            emp_work_experience.save()
+            return redirect('detail', employee.id)  # Redirect to employee list or some other page
         else:
             form_data = request.POST.copy()
             return render(request, 'employees/add_employee.html', {'form_data': form_data, 'error': 'Fill the required fields!'})

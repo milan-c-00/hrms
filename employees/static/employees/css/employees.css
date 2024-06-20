@@ -18,6 +18,7 @@
     font-family: roboto, sans-serif;
     font-size: 1vw;
     color: #8C8A8A;
+    font-weight: 400;
 }
 
 .add-employee-btn {
@@ -654,4 +655,12 @@ h3 a.active {
 .update-employee:hover {
     background-color: orange;
     color: #FFFFFF;
+}
+
+.dialog-danger {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    color: #DC3545;
+    text-align: justify;
+    margin: 0.5vw;
 }

@@ -45,8 +45,16 @@
                                 </div>
                             </a>{% endif %}
                         </td>
-                        <td>{{ employee.name }}</td>
-                        <td>{{ employee.team }}</td>
+                        <td>
+                            <a href="{% url 'personal' employee.id %}" style="text-decoration: none; color: black">{{ employee.name }}</a>
+                            <br>
+                            <span class="add-employee-label">{{ employee.personal_email }}</span>
+                        </td>
+                        <td>
+                            {{ employee.team }}
+                            <br>
+                            <span class="add-employee-label">{{ employee.position }}</span>
+                        </td>
                         <td>/</td>
                         <td>/</td>
                         <td>{{ employee.employee_contract.salary }}&euro;</td>
