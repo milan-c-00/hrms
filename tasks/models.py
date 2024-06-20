@@ -1,7 +1,10 @@
 from django.db import models
-from django.db.models import Model
+from employees.models import Employee
 
 class Task(models.Model):
     title = models.CharField(max_length=30)
-    image = models.ImageField(upload_to='')
-    date = models.DateField(auto_now=True)
+    status=models.CharField(max_length=30)
+    start=models.DateField()
+    end=models.DateField()
+    employee = models.ForeignKey(Employee, on_delete=models.CASCADE)
+    importance=models.CharField(max_length=30)

@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'clients.apps.ClientsConfig',
     'empPerformance.apps.EmpperformanceConfig',
     'employees.apps.EmployeesConfig',
     'tasks.apps.TasksConfig',
@@ -87,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'hrms',
         'USER': 'postgres',
-        'PASSWORD':'12345678',
+        'PASSWORD':'lepalukic12',
         'HOST':'localhost',
         'PORT':'5432',
     }
