@@ -80,5 +80,4 @@ class Contract(models.Model):
     salary = models.FloatField()
     employee = models.ForeignKey(Employee, name='contract', on_delete=models.CASCADE)
 
-
     
