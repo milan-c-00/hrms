@@ -114,7 +114,7 @@
            <a href="#" data-default-image="{% static 'Group 1000004819.png' %}" data-active-image="{% static 'Schedule White-01.png' %}" class="icon-link">
             <img src="{% static 'Group 1000004819.png' %}" class="icon" alt="schedule">
            Schedule</a>
-            <a href="#" data-default-image="{% static 'Tasks Icon.png' %}" data-active-image="{% static 'Taskboard White-01.png' %}" class="icon-link">
+            <a href="{% url 'alltasks' %}" data-default-image="{% static 'Tasks Icon.png' %}" data-active-image="{% static 'Taskboard White-01.png' %}" class="icon-link {% if request.path|slice:6 == '/tasks'  %}active{% endif %}">
               <img src="{% static 'Tasks Icon.png' %}" class="icon" alt="tasks">
            Task Board</a>
             <a href="#" data-default-image="{% static 'Payment Dark-01.png' %}" data-active-image="{% static 'Payment White-01.png' %}" class="icon-link">
