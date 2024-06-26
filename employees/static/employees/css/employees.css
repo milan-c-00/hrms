@@ -1,0 +1,666 @@
+
+.add-employee-form-part {
+    font-family: roboto, sans-serif;
+    font-weight: 600;
+    font-size: 1.5vw;
+    background-color: #FFFFFF;
+    border-radius: 0.5vw;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    padding: 2vw;
+    margin: 2vw;
+}
+
+#add-emp-photo {
+
+}
+
+.add-employee-label {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    color: #8C8A8A;
+    font-weight: 400;
+}
+
+.add-employee-btn {
+    color: #FFFFFF;
+    font-size: 1vw;
+    font-family: roboto, sans-serif;
+    font-weight: 500;
+    border: none;
+    background-color: #2FAC67;
+    border-radius: 0.5vw;
+    padding: 0.6em 1.5em;
+    text-align: center;
+}
+
+.add-employee-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.add-employee-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.add-employee-row div {
+    width: 50%;
+    margin: 1vw;
+}
+
+.add-employee-row div select {
+    width: 100%;
+    padding: 1em 5%;
+}
+
+.add-employee-input {
+    border: 1px solid #8C8A8A;
+    font-family: roboto, sans-serif;
+    color: #8C8A8A;
+    font-size: 1vw;
+    /*height: 2em;*/
+    padding: 1em 5%;
+    width: 90%;
+    border-radius: 0.2vw;
+}
+
+#basic-form, #education-form {
+    width: 60%;
+}
+#add-emp-photo {
+    width: 20%;
+}
+
+#education {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    border: 1px solid #8C8A8A;
+    border-radius: 0.2vw;
+    background-color: #FFFFFF;
+    color: #2FAC67;
+    height: 100%;
+    width: 100%;
+    padding: 1em 1.5em;
+}
+
+#salary-div {
+    width: 100%;
+}
+
+.error-message {
+    font-size: 1vw;
+    color: red;
+}
+
+.heading-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1.5%;
+    background-color: #FCFBFB;
+}
+
+.employees-heading {
+    font-family: roboto, sans-serif;
+    font-weight: 600;
+    font-size: 2.5vw;
+}
+
+
+.employees-search-form {
+    width: 40%;
+    max-width: 40%;
+}
+
+.employees-search-input {
+    width: 100%;
+    border: 0;
+    height: 3.2em;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    font-size: 1vw;
+    line-height: 1.25em;
+    color: #8C8A8A;
+    padding: 0 2% 0 2%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 6px 16px;
+}
+
+.employees-search-input:focus {
+    outline: none;
+    border-color: transparent;
+}
+
+.employees-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1.5%;
+    background-color: #FCFBFB;
+    border-bottom: 1px solid #8D8D8D80;
+}
+
+.employees-navbar h3 {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    font-weight: 500;
+    margin: 0 1vw 0 0;
+    padding: 1vw;
+}
+
+h3 a {
+    text-decoration: none;
+    color: #8C8A8A;
+}
+h3 a.active {
+    text-decoration: none;
+    color: black;
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+.active-line {
+    border-bottom: 4px solid #2FAC67;
+}
+
+.employees-add {
+    color: #FFFFFF;
+    background-color: #2FAC67;
+    font-family: roboto, sans-serif;
+    font-weight: 500;
+    font-size: 1vw;
+    border-radius: 0.5vw;
+    padding: 0.8em 1.2em;
+    text-decoration: none;
+}
+
+.employees-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.employees-table {
+    width: 97%;
+    margin: 1em 1.5%;
+    background-color: #FFFFFF;
+    padding: 2vw;
+    border-radius: 0.5vw;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+
+}
+
+.employees-table-header {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    color: #8C8A8A;
+    text-align: left;
+}
+
+.employees-table-body {
+    font-family: roboto, sans-serif;
+    font-size: 1.3vw;
+    font-weight: 700;
+}
+
+.employees-table-body td {
+    padding: 1em 0;
+    border: none;
+}
+
+.employees-table-body tr:hover {
+    background-color: #EFFFF6;
+}
+
+.employee-img-small {
+    width: 3.2vw;
+    height: 3.2vw;
+    border-radius: 50%;
+}
+
+#employee-img-small {
+    width: 3.2vw;
+    height: 3.2vw;
+}
+
+.centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centered-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.between {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.rounded {
+    border-radius: 50%;
+}
+
+.image-container {
+    width: 100%; /* Desired square width */
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    position: relative;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the container */
+    object-position: center; /* Centers the image within the container */
+}
+
+.vertical-dots-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 3.2vw; /* Adjust height as needed */
+    /*width: 3.2vw; !* Adjust width as needed *!*/
+    cursor: pointer;
+}
+
+.dot {
+    height: 0.3vw; /* Size of the dot */
+    width: 0.3vw; /* Size of the dot */
+    background-color: #2FAC67; /* Color of the dot */
+    border-radius: 50%;
+    margin: 0.15vw 0; /* Space between the dots */
+}
+
+.vertical-dots-menu:hover .dot {
+    background-color: #555; /* Change color on hover */
+}
+
+.statistics-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 97%;
+    margin: 1.5%;
+}
+
+.statistics-card {
+    background-color: #FFFFFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    border-radius: 0.5vw;
+    width: 18%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.statistics-card img {
+    width: 20%;
+    max-width: 20%;
+    margin: 1vw;
+}
+.statistics-card h2 {
+    font-size: 1.5vw;
+    font-weight: 600;
+    margin: 1vw 0 0 0;
+}
+
+.statistics-card-detail {
+    font-size: 0.8vw;
+    font-weight: 400;
+    color: #8C8A8A;
+    margin: 0 0 0 0;
+}
+
+.statistics-card-detail-green {
+    font-size: 0.7vw;
+    font-weight: 600;
+    color: #2FAC67;
+    margin: 1em 0 0 0;
+}
+
+.statistics-card-detail-dark {
+    font-size: 0.7vw;
+    font-weight: 600;
+    color: #1B1534;
+    margin: 1em 0 0 0;
+}
+
+.statistics-card-detail-black {
+    font-size: 0.7vw;
+    font-weight: 600;
+    color: #1B1534;
+    margin-top: 0.6em;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 97%;
+    margin: 1.5%;
+}
+
+.profile-image-container {
+    width: 30%;
+    max-width: 30%;
+    background-color: #FFFFFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    border-radius: 0.5vw;
+}
+
+.profile-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: auto;
+}
+
+.profile-image-text{
+    padding-left: 1vw;
+}
+.profile-image-text h2 {
+    font-family: roboto, sans-serif;
+    font-size: 2vw;
+    font-weight: 700;
+}
+.profile-image-text p {
+    display: inline;
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    color: #FFFFFF;
+    background-color: #2FAC67;
+    border-radius: 0.5vw;
+    padding: 0.8em;
+}
+.profile-image-text h3 {
+    font-family: roboto, sans-serif;
+    font-size: 1.3vw;
+}
+
+.profile-content {
+    height: 300px;
+    width: 65%;
+}
+
+.profile-content-main {
+    background-color: #FFFFFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    border-radius: 0.5vw;
+    max-width: 97%;
+    margin: 1.5%;
+    padding: 5%;
+}
+
+.resume-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    padding-bottom: 1vw;
+    border-bottom: 1px solid #8C8A8A80;
+}
+
+.resume-nav-link {
+    font-family: roboto, sans-serif;
+    font-size: 0.8vw;
+    font-weight: 600;
+    color: #2FAC67;
+    padding: 1em 1.5em;
+    border: none;
+    text-decoration: none;
+    border-radius: 0.5vw;
+    background-color: #EFFFF6;
+}
+
+.resume-nav-active {
+    background-color: #2FAC67;
+    color: #FFFFFF;
+}
+
+.resume-personal p {
+    font-family: roboto, sans-serif;
+    font-size: 1.5vw;
+    font-weight: 600;
+}
+
+.education-heading {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    margin-bottom: 0;
+}
+
+.education-heading h2 {
+    font-family: roboto, sans-serif;
+    font-size: 1.5vw;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.education-heading p,
+.education-heading + p {
+    font-family: roboto, sans-serif;
+    font-size: 0.8vw;
+    color: #8C8A8A;
+    align-self: center;
+    margin-bottom: 0;
+}
+
+.education-details {
+    font-family: roboto, sans-serif;
+    font-size: 1.3vw;
+    color: #8D8D8D;
+    text-align: justify;
+}
+
+#employee-document-card {
+    width: 45%;
+    max-width: 45%;
+}
+
+.employee-skills {
+    width: 60%;
+    margin: 1.5%;
+    background-color: #FFFFFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    padding: 1vw;
+    border-radius: 0.5vw;
+}
+
+.employee-notes {
+    width: 35%;
+    margin: 1.5%;
+    background-color: #FFFFFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    padding: 1vw;
+    border-radius: 0.5vw;
+}
+
+.w-50 {
+    width: 50%;
+}
+.skills-container {
+    /*width: 50%;*/
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-height: 35vh;
+    overflow-y: scroll;
+    cursor: all-scroll;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.skills-container p {
+    align-self: center;
+}
+.skills-container h6 {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    font-weight: 700;
+    color: #1B1534;
+    margin: 1em 0;
+
+}
+
+.skills-container h6 span {
+    display: inline-block;
+    background-color: #1B1534;
+    height: 1vw;
+    width: 1vw;
+    border-radius: 50%;
+    margin: 0 2vw 0 1vw;
+    vertical-align: middle;
+}
+
+.skills-container h6:nth-of-type(even) span {
+    background-color: #2FAC67;
+}
+
+.employee-note {
+    width: 90%;
+    padding: 5%;
+    border-radius: 0.5vw;
+    box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+    margin: 1vw 0 0 0;
+}
+
+.employee-note:nth-of-type(3n+1) {
+    background-color: #2FAC67;
+    color: #FFFFFF;
+}
+
+.employee-note:nth-of-type(3n+2) {
+    background-color: #1B1534;
+    color: #FFFFFF;
+}
+
+.employee-note:nth-of-type(3n) {
+    background-color: #EEFEF5;
+    color: #1B1534;
+    .delete-note {
+        color: #1B1534;
+    }
+}
+
+.employee-note h3 {
+    margin: 0.5em 0;
+    font-size: 1.2vw;
+}
+.employee-note p {
+    margin: 0.5em 0;
+    font-size: 0.8vw;
+}
+
+.notes-container {
+    max-height: 40vh;
+    overflow-y: auto;
+    box-sizing: border-box;
+    cursor: all-scroll;
+
+}
+
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.hover:hover {
+    cursor: pointer;
+}
+
+.delete-note {
+    text-decoration: none;
+    font-size: 1em;
+    color: #FFFFFF;
+    margin-left: auto;
+    float: right;
+}
+
+.employees-action {
+    display: none;
+    width: 150%;
+    /*height: 100%;*/
+    background-color: #FCFBFB;
+    border-radius: 0.5vw;
+    box-shadow: rgba(149, 157, 165, 0.5) 0 8px 24px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.employees-action div {
+    font-size: 0.8vw;
+    color: #8D8D8D;
+    float: right;
+    text-align: right;
+    cursor: pointer;
+}
+
+.employees-action::after {
+            content: "";
+            position: absolute;
+            top: 100%; /* Position at the bottom of the popup */
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 0.8vw;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent; /* Create the triangle */
+        }
+
+.delete-employee {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    font-weight: 400;
+    text-align: center;
+    width: 80%;
+    margin: 5%;
+    border: 1px solid #DC3545;
+    border-radius: 0.5vw;
+    color: #DC3545;
+    text-decoration: none;
+    padding: 5%;
+}
+
+.delete-employee:hover {
+    background-color: #DC3545;
+    color: #FFFFFF;
+}
+
+.update-employee {
+    border-color: orange;
+    color: orange;
+}
+
+.update-employee:hover {
+    background-color: orange;
+    color: #FFFFFF;
+}
+
+.dialog-danger {
+    font-family: roboto, sans-serif;
+    font-size: 1vw;
+    color: #DC3545;
+    text-align: justify;
+    margin: 0.5vw;
+}

@@ -1,5 +1,6 @@
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 
@@ -17,11 +18,15 @@ def login_page(request):
         user = auth.authenticate(username=request.POST['username'], password=request.POST['password'])
         if user is not None:
             auth.login(request, user)
-            return redirect('home')
+            # return redirect('home')
+            next_url = request.POST.get('next', '/')
+            return HttpResponseRedirect(next_url)
         else:
             return render(request, 'accounts/login.html', {'error': 'Username or password is incorrect!'})
     else:
-        return render(request, 'accounts/login.html')
+        next_url = request.GET.get('next', '/')
+        return render(request, 'accounts/login.html', {'next': next_url})
+        # return render(request, 'accounts/login.html')
 
 
 @login_required

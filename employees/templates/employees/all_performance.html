@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'employees/css/employees.css' %}">
+{% endblock %}
+{% block content %}
+
+    <div class="heading-container">
+        <h1 class="employees-heading">Employees</h1>
+        <form action="{% url 'all_performance' %}" class="employees-search-form" method="GET">
+            <input type="text" class="employees-search-input" name="term" placeholder="Search">
+        </form>
+    </div>
+    <div class="employees-navbar">
+        <div class="employees-links">
+            <h3><a href="{% url 'allemployees' %}">Overview</a></h3>
+            <h3 class="active-line"><a href="{% url 'all_performance' %}" class="active">Performance</a></h3>
+            <h3><a href="{% url 'interns' %}">Interns</a></h3>
+        </div>
+        <div>
+{#            <input type="button" class="employees-filter" value="Filter">#}
+            <a href="{% url 'add_employee' %}" class="employees-add">Add +</a>
+        </div>
+    </div>
+    <div>
+        <table class="employees-table">
+            <thead class="employees-table-header">
+                <tr>
+                    <th></th>
+                    <th>NAME</th>
+                    <th>TEAM</th>
+                    <th>OFFICE TIME</th>
+                    <th>PRODUCTIVE</th>
+                    <th>EARNINGS</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody class="employees-table-body">
+                {% for employee in employees.all %}
+                    <tr>
+                        <td class="centered">{% if employee.image %}
+                            <a href="{% url 'personal' employee.id %}">
+                                <div class="image-container">
+                                    <img id="employee-img-small" src="{{ employee.image.url }}" alt="Employee image" class="employee-img-small">
+                                </div>
+                            </a>{% endif %}
+                        </td>
+                        <td>
+                            <a href="{% url 'personal' employee.id %}" style="text-decoration: none; color: black">{{ employee.name }}</a>
+                            <br>
+                            <span class="add-employee-label">{{ employee.personal_email }}</span>
+                        </td>
+                        <td>
+                            {{ employee.team }}
+                            <br>
+                            <span class="add-employee-label">{{ employee.position }}</span>
+                        </td>
+                        <td>/</td>
+                        <td>/</td>
+                        <td>{{ employee.employee_contract.salary }}&euro;</td>
+                        <td>
+                            <div class="vertical-dots-menu">
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

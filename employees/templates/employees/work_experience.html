@@ -15,16 +15,16 @@
     <div class="profile-content-main">
         <div class="resume-nav">
             <a href="{% url 'personal' employee.id %}" class="resume-nav-link">Personal Information</a>
-            <a href="{% url 'education' employee.id %}" class="resume-nav-link resume-nav-active">Educational Background</a>
-            <a href="{% url 'work_experience' employee.id %}" class="resume-nav-link">Work Experience</a>
+            <a href="{% url 'education' employee.id %}" class="resume-nav-link">Educational Background</a>
+            <a href="{% url 'work_experience' employee.id %}" class="resume-nav-link resume-nav-active">Work Experience</a>
         </div>
         <div class="education-content">
             <div class="education-heading">
-                <h2>{{ employee.employee_education.school }}</h2>
-                <p>{{ employee.employee_education.start_date }}-{{ employee.employee_education.end_date }}</p>
+                <h2>{{ employee.employee_work_experience.company }}</h2>
+                <p>{{ employee.employee_work_experience.start_date }}-{{ employee.employee_work_experience.end_date }}</p>
             </div>
-            <p>{{ employee.employee_education.degree }}</p>
-            <p class="education-details">{{ employee.employee_education.details }}</p>
+            <p></p>
+            <p class="education-details">{{ employee.employee_work_experience.details }}</p>
         </div>
     </div>
 {% endblock %}

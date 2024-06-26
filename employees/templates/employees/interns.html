@@ -1,38 +1,34 @@
-
-{%extends 'base.html'%}
+{% extends 'base.html' %}
 {% load static %}
 {% block styles %}
     <link rel="stylesheet" href="{% static 'employees/css/employees.css' %}">
 {% endblock %}
-{%block content%}
-
-{#  <meta charset="UTF-8">#}
-{#  <meta name="viewport" content="width=device-width, initial-scale=1.0">#}
-{#  <script src="https://cdn.tailwindcss.com"></script>#}
+{% block content %}
 
     <div class="heading-container">
         <h1 class="employees-heading">Employees</h1>
-        <form action="{% url 'allemployees' %}" class="employees-search-form" method="GET">
+        <form action="{% url 'interns' %}" class="employees-search-form" method="GET">
             <input type="text" class="employees-search-input" name="term" placeholder="Search">
         </form>
     </div>
     <div class="employees-navbar">
         <div class="employees-links">
-            <h3 class="active-line"><a href="{% url 'allemployees' %}" class="active">Overview</a></h3>
+            <h3><a href="{% url 'allemployees' %}">Overview</a></h3>
             <h3><a href="{% url 'all_performance' %}">Performance</a></h3>
-            <h3><a href="{% url 'interns' %}">Interns</a></h3>
+            <h3 class="active-line"><a href="{% url 'interns' %}" class="active">Interns</a></h3>
         </div>
         <div>
 {#            <input type="button" class="employees-filter" value="Filter">#}
             <a href="{% url 'add_employee' %}" class="employees-add">Add +</a>
         </div>
     </div>
+
     <div class="statistics-container">
         <div class="statistics-card">
             <img src="{% static 'employees/images/icon-people.svg' %}" alt="people icon">
             <div>
                 <h2>{{ employees.count }}</h2>
-                <p class="statistics-card-detail">Total Employees</p>
+                <p class="statistics-card-detail">Total Interns</p>
                 <p class="statistics-card-detail-green">Departments</p>
                 <p class="statistics-card-detail-black">{{ distinct_teams }}</p>
             </div>
@@ -41,7 +37,7 @@
             <img src="{% static 'employees/images/icon-profile-check.svg' %}" alt="profile icon">
             <div>
                 <h2>100</h2>
-                <p class="statistics-card-detail">Employee Attendance</p>
+                <p class="statistics-card-detail">Intern Attendance</p>
                 <p class="statistics-card-detail-green">/</p>
                 <p class="statistics-card-detail-black">/</p>
             </div>
@@ -50,7 +46,7 @@
             <img src="{% static 'employees/images/icon-time-dark.svg' %}" alt="time icon">
             <div>
                 <h2>100</h2>
-                <p class="statistics-card-detail">Employee Late</p>
+                <p class="statistics-card-detail">Interns Late</p>
                 <p class="statistics-card-detail-dark">/</p>
                 <p class="statistics-card-detail-black">/</p>
 
@@ -60,18 +56,18 @@
             <img src="{% static 'employees/images/icon-time-light.svg' %}" alt="time icon">
             <div>
                 <h2>100</h2>
-                <p class="statistics-card-detail">Employee Overtime</p>
+                <p class="statistics-card-detail">Interns Overtime</p>
                 <p class="statistics-card-detail-green">/</p>
                 <p class="statistics-card-detail-black">/</p>
             </div>
         </div>
         <div class="statistics-card">
-            <img src="{% static 'employees/images/icon-profile-x.svg' %}" alt="profile icon">
+            <img src="{% static 'employees/images/icon-graph.svg' %}" alt="graph icon">
             <div>
-                <h2>{{ former_employees }}</h2>
-                <p class="statistics-card-detail">Former Employee</p>
-                <p  class="statistics-card-detail-dark">Departments</p>
-                <p class="statistics-card-detail-black">{{ distinct_teams }}</p>
+                <h2>100</h2>
+                <p class="statistics-card-detail">Overall Engagement Score</p>
+                <p  class="statistics-card-detail-dark">/</p>
+                <p class="statistics-card-detail-black">/</p>
             </div>
         </div>
     </div>
@@ -108,49 +104,20 @@
                             <br>
                             <span class="add-employee-label">{{ employee.position }}</span>
                         </td>
-                        <td>08:00h</td>
+                        <td>/</td>
                         <td>/</td>
                         <td>{{ employee.employee_contract.salary }}&euro;</td>
-                        <td style="position: relative">
-                            <div class="vertical-dots-menu" onclick="toggleAction({{ employee.id }})">
+                        <td>
+                            <div class="vertical-dots-menu">
                                 <span class="dot"></span>
                                 <span class="dot"></span>
                                 <span class="dot"></span>
-                            </div>
-                            <div id="employee-action{{ employee.id }}" class="employees-action">
-{#                                <a href="{% url 'delete_employee' employee.id %}" class="delete-employee">Delete</a>#}
-                                <a class="delete-employee hover" onclick="toggleDialog({{ employee.id }})">Delete</a>
-                                <a href="#" class="delete-employee update-employee">Update</a>
-                            </div>
-                            <div id="employee-dialog{{ employee.id }}" class="employees-action">
-                                <p class="dialog-danger">Are you sure you want do delete {{ employee.name }} from employees?</p>
-                                <a href="{% url 'delete_employee' employee.id %}" class="delete-employee">Delete</a>
-                                <a class="delete-employee update-employee hover" onclick="toggleDialog({{ employee.id }})">Cancel</a>
                             </div>
                         </td>
                     </tr>
-
                 {% endfor %}
             </tbody>
         </table>
     </div>
-    <script>
-        function toggleAction(employee_id){
-            let employeeAction = document.getElementById(`employee-action${employee_id}`);
-            if (employeeAction.style.display === 'none' || employeeAction.style.display === '') {
-                employeeAction.style.display = 'flex';
-            } else {
-                employeeAction.style.display = 'none';
-            }
-        }
-        function toggleDialog(employee_id) {
-            let employeeDialog = document.getElementById(`employee-dialog${employee_id}`);
-            if (employeeDialog.style.display === 'none' || employeeDialog.style.display === '') {
-                employeeDialog.style.display = 'flex';
-            } else {
-                employeeDialog.style.display = 'none';
-            }
-        }
-    </script>
 
-{%endblock%}
+{% endblock %}

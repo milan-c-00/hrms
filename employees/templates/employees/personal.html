@@ -1,7 +1,82 @@
-{%extends 'base.html'%}
-{%block content%}
-<h3>{{employee.first_name}}</h3>
-<h3>{{employee.last_name}}</h3>
-<h3>{{employee.title}}</h3>
-<h3>{{employee.date_of_birth}}</h3>
-{%endblock%}
+{% extends 'employees/detail.html' %}
+{% block profile-content %}
+    <div class="employees-navbar">
+        <div class="employees-links">
+            <h3 class="active-line"><a href="{% url 'personal' employee.id %}" class="active">Resume</a></h3>
+            <h3><a href="{% url 'documents' employee.id %}">Documents</a></h3>
+            <h3><a href="{% url 'status' employee.id %}">Status</a></h3>
+            <h3><a href="{% url 'jobdetails' employee.id %}">Job Details</a></h3>
+            <h3><a href="{% url 'performance' employee.id %}">Performance</a></h3>
+            <h3><a href="{% url 'daysoff' employee.id %}">Days Off</a></h3>
+        </div>
+        <div>
+        </div>
+    </div>
+    <div class="profile-content-main">
+        <div class="resume-nav">
+            <a href="{% url 'personal' employee.id %}" class="resume-nav-link resume-nav-active">Personal Information</a>
+            <a href="{% url 'education' employee.id %}" class="resume-nav-link">Educational Background</a>
+            <a href="{% url 'work_experience' employee.id %}" class="resume-nav-link">Work Experience</a>
+        </div>
+        <div class="resume-personal">
+                <p>Personal information</p>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="name" class="add-employee-label">Name</label>
+                        <br>
+                        <input id="name" type="text" name="name" placeholder="Type here" class="add-employee-input" required value="{{ employee.name }}">
+                    </div>
+                    <div>
+                        <label for="birth_date" class="add-employee-label">Birth date</label>
+                        <br>
+                        <input id="birth_date" type="date" name="birth_date" placeholder="Choose" class="add-employee-input" required value="{{ employee.birth_date|date:'Y-m-d' }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="position" class="add-employee-label">Position</label>
+                        <br>
+                        <input id="position" type="text" name="position" placeholder="Type here" class="add-employee-input" required value="{{ employee.position }}">
+                    </div>
+                    <div>
+                        <label for="team" class="add-employee-label">Team</label>
+                        <br>
+{#                        <input id="team" type="text" name="team" placeholder="Choose" class="add-employee-input" required value="{{ form_data.team }}">#}
+                        <select name="team" id="team" class="add-employee-input" required>
+                            <option value="Designer" {% if employee.team == 'Designer' %}selected{% endif %}>Designer</option>
+                            <option value="Developer" {% if employee.team == 'Developer' %}selected{% endif %}>Developer</option>
+                            <option value="Marketing" {% if employee.team == 'Marketing' %}selected{% endif %}>Marketing</option>
+                            <option value="Other" {% if employee.team == 'Other' %}selected{% endif %}>Other</option>
+                            <option value="Support" {% if employee.team == 'Support' %}selected{% endif %}>Support</option>
+                        </select>
+                    </div>
+                </div>
+                <p>Contact details</p>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="personal_email" class="add-employee-label">Personal email</label>
+                        <br>
+                        <input id="personal_email" type="email" name="personal_email" placeholder="Type here" class="add-employee-input" value="{{ employee.personal_email }}">
+                    </div>
+                    <div>
+                        <label for="professional_email" class="add-employee-label">Professional email</label>
+                        <br>
+                        <input id="professional_email" type="email" name="professional_email" placeholder="Type here" class="add-employee-input" value="{{ employee.professional_email }}">
+                    </div>
+                </div>
+                <div class="add-employee-row">
+                    <div>
+                        <label for="address" class="add-employee-label">Address</label>
+                        <br>
+                        <input id="address" type="text" name="address" placeholder="Type here" class="add-employee-input" value="{{ employee.address }}">
+                    </div>
+                    <div>
+                        <label for="phone" class="add-employee-label">Phone</label>
+                        <br>
+                        <input id="phone" type="tel" name="phone" placeholder="Type here" class="add-employee-input" required value="{{ employee.phone }}">
+                    </div>
+
+                </div>
+        </div>
+    </div>
+{% endblock %}

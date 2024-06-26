@@ -1,1 +1,143 @@
-oicniwnc
+{% extends 'employees/detail.html' %}
+{% load static %}
+{% block profile-content %}
+    <div class="employees-navbar">
+        <div class="employees-links">
+            <h3><a href="{% url 'personal' employee.id %}">Resume</a></h3>
+            <h3><a href="{% url 'documents' employee.id %}">Documents</a></h3>
+            <h3><a href="{% url 'status' employee.id %}">Status</a></h3>
+            <h3><a href="{% url 'jobdetails' employee.id %}">Job Details</a></h3>
+            <h3 class="active-line"><a href="{% url 'performance' employee.id %}" class="active">Performance</a></h3>
+            <h3><a href="{% url 'daysoff' employee.id %}">Days Off</a></h3>
+        </div>
+        <div>
+        </div>
+    </div>
+    <div class="">
+        <div class="between">
+            <div class="employee-skills" id="employee-skills">
+                <div class="education-heading">
+                    <h2>Skills</h2>
+                    <p><label for="add-skill-btn" class="hover">Add +</label></p>
+                    <button id="add-skill-btn" hidden="hidden" onclick="toggleForm('skills')"></button>
+                </div>
+                <div class="between">
+                    <div class="w-50">
+                        <p class="add-employee-label text-center">Soft Skills</p>
+                        <div class="skills-container">
+                            {% for skill in employee.soft_skills %}
+                                <h6><span></span>{{ skill.name }}</h6>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+
+                    <div class="w-50">
+                        <p class="add-employee-label text-center">Software Skills</p>
+                        <div class="skills-container">
+
+                            {% for skill in employee.software_skills %}
+                                <h6><span></span>{{ skill.name }}</h6>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="skills-form employee-skills" id="skills-form" style="display: none">
+                <h2>Add skill</h2>
+                <form action="{% url 'add_skill' employee.id %}" method="POST">
+                    {% csrf_token %}
+                    <div class="add-employee-row">
+                        <div>
+                            <label for="skill" class="add-employee-label">Skill</label>
+                            <br>
+                            <input id="skill" type="text" name="name" placeholder="Type here" class="add-employee-input" required>
+                        </div>
+
+                        <div>
+                            <label for="skill_type" class="add-employee-label">Skill type</label>
+                            <br>
+    {#                        <input id="internship" type="text" name="internship" placeholder="Type here" class="add-employee-input">#}
+                            <select name="skill_type" id="skill_type" class="add-employee-input" required>
+                                <option value="soft">Soft skill</option>
+                                <option value="software">Software</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="add-employee-row">
+                        <div>
+                            <input type="submit" class="add-employee-btn hover" value="Save">
+                            <input type="reset" class="resume-nav-link hover" value="Cancel" onclick="toggleForm('skills')">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="employee-notes" id="employee-notes">
+                <div class="education-heading">
+                    <h2>Notes</h2>
+                    <p><label for="add-note-btn" class="hover">Add +</label></p>
+                    <button id="add-note-btn" hidden="hidden" onclick="toggleForm('notes')"></button>
+                </div>
+                <div class="notes-container">
+                    {% for note in employee.notes.all %}
+                    	<div class="employee-note">
+                            <h3>{{ note.note }}</h3>
+                            <p>{{ note.created_at|date:'d/m/Y' }}<a href="{% url 'delete_note' employee_id=employee.id note_id=note.id %}" class="delete-note">Delete</a></p>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="notes-form employee-notes" id="notes-form" style="display: none">
+                <h2>Add note</h2>
+                <form action="{% url 'add_note' employee.id %}" method="POST">
+                    {% csrf_token %}
+
+                    <div>
+                        <label for="note" class="add-employee-label">Note</label>
+                        <br>
+                        <input id="note" type="text" name="note" placeholder="Type here" class="add-employee-input" required>
+                    </div>
+                    <br>
+
+                    <div>
+                        <input type="submit" class="add-employee-btn hover" value="Save">
+                        <input type="reset" class="resume-nav-link hover" value="Cancel" onclick="toggleForm('notes')">
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        <div></div>
+        <div></div>
+
+    </div>
+    <script>
+        function toggleForm(type) {
+            console.log(type)
+            if (type === 'skills'){
+                let skillsForm = document.getElementById('skills-form');
+                let skillsContainer = document.getElementById('employee-skills');
+                if (skillsForm.style.display === 'none' || skillsForm.style.display === '') {
+                    skillsForm.style.display = 'block';
+                    skillsContainer.style.display = 'none';
+                } else {
+                    skillsForm.style.display = 'none';
+                    skillsContainer.style.display = 'block'
+                }
+            }
+            if (type === 'notes'){
+                let notesForm = document.getElementById('notes-form');
+                let notesContainer = document.getElementById('employee-notes');
+                if (notesForm.style.display === 'none' || notesForm.style.display === '') {
+                    notesForm.style.display = 'block';
+                    notesContainer.style.display = 'none';
+                } else {
+                    notesForm.style.display = 'none';
+                    notesContainer.style.display = 'block'
+                }
+            }
+        }
+    </script>
+{% endblock %}
